@@ -14,13 +14,32 @@ a {
   color: #000;
 }
 
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 1.7;
+}
+
 h1 {
   font-size: 1.8rem;
   padding: 1rem;
 }
 
-.container {
+/* .container {
+  padding: 2rem;
+} */
+
+.header {
   display: flex;
-  justify-content: center;
-  padding: 1rem 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgoldenrodyellow;
+  height: 70px;
+  padding: 2rem;
+}
+
+.header-link {
+  display: flex;
 }
