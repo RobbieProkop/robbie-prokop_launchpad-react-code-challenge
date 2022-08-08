@@ -2,6 +2,7 @@ import {
   FaUniversity,
   FaSearchLocation,
   FaRegStickyNote,
+  FaHome,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -13,6 +14,11 @@ const Header = () => {
           <Link to="/">Launchpad Code Challenge</Link>
         </div>
         <ul className="header-link">
+          <li className="icon">
+            <Link to="/">
+              <FaHome /> Home
+            </Link>
+          </li>
           <li className="icon">
             <Link to="/universities">
               <FaUniversity /> Find Universities

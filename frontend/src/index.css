@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -19,17 +21,20 @@ ul {
 }
 
 li {
-  line-height: 1.7;
+  line-height: 2.2;
 }
 
 h1 {
   font-size: 1.8rem;
   padding: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-/* .container {
-  padding: 2rem;
-} */
+.container {
+  width: 100%;
+  /* max-width: 1200px; */
+}
 
 .header {
   display: flex;
@@ -38,8 +43,22 @@ h1 {
   background-color: lightgoldenrodyellow;
   height: 70px;
   padding: 2rem;
+  margin-bottom: 5rem;
 }
 
 .header-link {
   display: flex;
+  align-items: center;
+}
+
+.header-link a {
+  padding: 10px;
+}
+
+.header-link a:hover {
+  color: blue;
+}
+
+.header-link a svg {
+  margin-right: 5px;
 }
