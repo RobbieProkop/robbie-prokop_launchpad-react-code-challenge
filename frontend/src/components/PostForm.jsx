@@ -5,24 +5,21 @@ import { postActions } from "../features/posts/postSlice";
 const PostForm = () => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
-  const postForm = useSelector((state) => state.posts.postForm);
-  console.log("post form", postForm);
 
-  // const setToggleForm = () => {
-  //   dispatch(setToggleForm());
-  //   console.log("toggle");
-  // };
+  const toggleForm = () => dispatch(postActions.setToggleForm());
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(postActions.setToggleForm());
+    toggleForm();
   };
 
   return (
     <section className="form">
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="text">Write Your Post</label>
+          <label htmlFor="text">
+            Write Your Post <span onClick={toggleForm}>X</span>
+          </label>
           <input
             type="text"
             name="text"

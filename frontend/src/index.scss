@@ -112,6 +112,15 @@ p {
       margin-bottom: 10px;
       label {
         font-size: 1.5rem;
+        @include flex-between();
+
+        span {
+          transition: transform 0.3s ease-in;
+          cursor: pointer;
+          &:hover {
+            transform: translate(3px, -5px);
+          }
+        }
       }
 
       input,
