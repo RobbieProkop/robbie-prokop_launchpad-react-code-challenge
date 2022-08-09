@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Universities from "./pages/Universities";
 import PostalLookup from "./pages/PostalLookup";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/postal" element={<PostalLookup />} />
           </Routes>
         </div>
+        <Footer />
       </Router>
     </>
   );

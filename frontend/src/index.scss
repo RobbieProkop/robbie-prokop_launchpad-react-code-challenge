@@ -11,11 +11,14 @@ $hover: rgb(123, 195, 123);
   box-sizing: border-box;
 }
 
-body {
+body,
+#root {
   font-family: "Poppins", sans-serif;
-  // height: 100vh;
+  min-height: 100vh;
   background: $black;
   color: $white;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 a {
@@ -68,4 +71,13 @@ h1 {
       }
     }
   }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: papayawhip;
+  color: $black;
+  height: 70px;
 }
