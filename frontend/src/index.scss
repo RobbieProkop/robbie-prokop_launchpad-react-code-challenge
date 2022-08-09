@@ -115,9 +115,10 @@ p {
         @include flex-between();
 
         span {
-          transition: transform 0.3s ease-in;
+          transition: all 0.3s ease-in;
           cursor: pointer;
           &:hover {
+            color: $btn;
             transform: translate(3px, -5px);
           }
         }
@@ -217,8 +218,9 @@ p {
   cursor: pointer;
   transition: all 0.3s ease-in;
   &:hover {
-    background: $hover;
-    border: 1px solid $hover;
+    background: $black;
+    border: 1px solid $black;
+    color: $white;
     // transform: scale(1.1);
     transform: translate(0.2rem, -0.2rem);
   }
