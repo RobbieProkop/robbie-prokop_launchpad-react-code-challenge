@@ -15,19 +15,21 @@ const Home = () => {
   };
   return (
     <>
-      <section className="heading">
-        <h1>Posts Dashboard</h1>
-        <button className="btn" onClick={addPostHandler}>
-          Add a post!
-        </button>
-      </section>
+      <div className="container">
+        <section className="heading">
+          <h1>Posts Dashboard</h1>
+          <button className="btn" onClick={addPostHandler}>
+            Add a post!
+          </button>
+        </section>
 
-      {toggled && <PostForm className="modal" />}
-      <div className="bg1">
-        <h2>
-          Name <span>| text</span>
-        </h2>
-        <p>post info</p>
+        {toggled && <PostForm />}
+        <div className="bg1">
+          <h2>
+            Name <span>| text</span>
+          </h2>
+          <p>post info</p>
+        </div>
       </div>
 
       {/* <div class="bg1">

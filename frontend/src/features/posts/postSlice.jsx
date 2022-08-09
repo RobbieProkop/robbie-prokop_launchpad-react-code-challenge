@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   posts: [],
-  postForm: false,
+  //CHANGE TO FALSE!
+  postForm: true,
   isError: false,
   isLoading: false,
   isSuccessful: false,
