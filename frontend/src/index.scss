@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 $primaryColor: lightgoldenrodyellow;
+$btn: rgb(212, 194, 35);
 $black: #333;
 $white: #fff;
 $hover: rgb(123, 195, 123);
@@ -39,7 +40,6 @@ h1 {
   font-size: 1.8rem;
   padding: 1rem;
   font-weight: 600;
-  margin-bottom: 10px;
 }
 
 h2 {
@@ -55,19 +55,26 @@ p {
   font-size: 1rem;
 }
 
-.header {
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header {
+  @include flex-between();
   background-color: $primaryColor;
   height: 70px;
   padding: 2rem;
-  /* border-bottom: 1px solid rgb(100, 99, 99); */
 
   .header-link {
-    display: flex;
-    align-items: center;
-
+    @include flex-center();
     a {
       padding: 10px;
 
@@ -87,12 +94,18 @@ p {
   grid-gap: 10px;
   max-width: 1200px;
 
+  .heading {
+    @include flex-center();
+    flex-direction: column;
+    &:nth-of-type(1) {
+      grid-column: 1 /5;
+    }
+  }
+
   div {
     height: 150px;
-    display: flex;
+    @include flex-center();
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     transition: all 0.5s ease-in;
 
@@ -134,11 +147,27 @@ p {
   }
 }
 
+.btn {
+  padding: 10px 20px;
+  border: 1px solid $btn;
+  border-radius: 5px;
+  background: $btn;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  &:hover {
+    background: $hover;
+    border: 1px solid $hover;
+    // transform: scale(1.1);
+    transform: translate(0.2rem, -0.2rem);
+  }
+}
+
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: papayawhip;
+  @include flex-center();
+  background: $primaryColor;
   color: $black;
   height: 70px;
 }
