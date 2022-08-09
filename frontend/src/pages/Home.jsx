@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
-import { postActions } from "../features/posts/postSlice";
+import Spinner from "../components/Spinner";
+import { getPosts, setToggleForm, reset } from "../features/posts/postSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const toggled = useSelector((state) => state.posts.postForm);
+  const { posts, isLoading, isError, message } = useSelector(
+    (state) => state.posts
+  );
 
   const addPostHandler = (e) => {
     e.preventDefault();
     {
-      !toggled && dispatch(postActions.setToggleForm());
+      !toggled && dispatch(setToggleForm());
     }
   };
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+    dispatch(getPosts);
+
+    return () => dispatch(reset());
+  }, [dispatch, isError, message]);
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <div className="container">
@@ -24,6 +41,18 @@ const Home = () => {
         </section>
 
         {toggled && <PostForm />}
+
+        <section className="content">
+          {posts.length > 0 ? (
+            <div className="posts">
+              {posts.map((post) => (
+                <PostItem key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <h3>"No posts to show"</h3>
+          )}
+        </section>
         <div className="bg1">
           <h2>
             Name <span>| text</span>

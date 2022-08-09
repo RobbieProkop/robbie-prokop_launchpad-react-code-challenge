@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { postActions } from "../features/posts/postSlice";
+import { useDispatch } from "react-redux";
+import { setToggleForm, createPost } from "../features/posts/postSlice";
 
 const PostForm = () => {
+  const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
-  const toggleForm = () => dispatch(postActions.setToggleForm());
+  const toggleForm = () => dispatch(setToggleForm());
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(createPost({ text }));
+    setText("");
     toggleForm();
   };
 
@@ -18,8 +21,16 @@ const PostForm = () => {
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="text">
-            Write Your Post <span onClick={toggleForm}>X</span>
+            Title <span onClick={toggleForm}>X</span>
           </label>
+          <input
+            type="text"
+            name="text"
+            id="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <label htmlFor="text">Post</label>
           <input
             type="text"
             name="text"
