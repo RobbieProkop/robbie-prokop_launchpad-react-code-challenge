@@ -1,9 +1,14 @@
 const Home = () => {
+  const addPostHandler = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <section className="heading">
         <h1>Posts Dashboard</h1>
-        <button className="btn">Add a post!</button>
+        <button className="btn" onClick={addPostHandler}>
+          Add a post!
+        </button>
       </section>
       <div className="bg1">
         <h2>
