@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   posts: [],
+  postForm: false,
   isError: false,
   isLoading: false,
   isSuccessful: false,
@@ -12,9 +13,12 @@ export const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    // reset: (state) => initialState,
+    setToggleForm(state) {
+      state.postForm = !state.postForm;
+    },
   },
 });
 
-export const { reset } = postSlice.actions;
+export const postActions = postSlice.actions;
 export default postSlice.reducer;

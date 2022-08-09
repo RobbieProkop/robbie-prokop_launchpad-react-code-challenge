@@ -1,4 +1,4 @@
 const Universities = () => {
-  return <div>Universities</div>;
+  return <div className="container">Universities</div>;
 };
 export default Universities;

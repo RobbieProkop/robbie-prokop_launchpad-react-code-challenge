@@ -10,13 +10,11 @@ function App() {
     <>
       <Router>
         <Header />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/universities" element={<Universities />} />
-            <Route path="/postal" element={<PostalLookup />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/universities" element={<Universities />} />
+          <Route path="/postal" element={<PostalLookup />} />
+        </Routes>
         <Footer />
       </Router>
     </>

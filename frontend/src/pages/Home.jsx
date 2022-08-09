@@ -1,6 +1,17 @@
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import PostForm from "../components/PostForm";
+import { postActions } from "../features/posts/postSlice";
+
 const Home = () => {
+  const dispatch = useDispatch();
+  const toggled = useSelector((state) => state.posts.postForm);
+
   const addPostHandler = (e) => {
     e.preventDefault();
+    {
+      !toggled && dispatch(postActions.setToggleForm());
+    }
   };
   return (
     <>
@@ -10,6 +21,8 @@ const Home = () => {
           Add a post!
         </button>
       </section>
+
+      {toggled && <PostForm className="modal" />}
       <div className="bg1">
         <h2>
           Name <span>| text</span>
