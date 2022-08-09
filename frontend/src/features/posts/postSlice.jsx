@@ -52,11 +52,11 @@ export const postSlice = createSlice({
     //   .addCase(getPosts.pending, (state) => {
     //     state.isLoading = true;
     //   })
-    //   .addCase(getPosts.success, (state, action) => {
-    //     state.isLoading = false;
-    //     state.isSuccessful = true;
-    //     state.posts = action.payload;
-    //   })
+    // .addCase(getPosts.success, (state, action) => {
+    //   state.isLoading = false;
+    //   state.isSuccessful = true;
+    //   state.posts.push(action.payload);
+    // });
     //   .addCase(getPosts.fail, (state, action) => {
     //     state.isLoading = false;
     //     state.isError = true;

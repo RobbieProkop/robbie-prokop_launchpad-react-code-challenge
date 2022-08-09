@@ -11,6 +11,7 @@ const createPost = async (postData) => {
 //Get all posts
 const getPosts = async () => {
   const { data } = await axios.get(API_URL);
+  console.log("getpost data", data);
   return data;
 };
 

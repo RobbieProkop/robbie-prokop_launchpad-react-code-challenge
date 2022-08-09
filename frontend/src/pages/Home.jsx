@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
 import PostItem from "../components/PostItem";
@@ -19,13 +20,21 @@ const Home = () => {
     }
   };
 
+  const [apiPosts, setApiPosts] = useState([]);
   useEffect(() => {
     if (isError) {
       console.log(message);
     }
-    dispatch(getPosts);
+    // dispatch(getPosts());
+    const fetchPosts = async () => {
+      const { data } = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      setApiPosts(data);
+    };
+    fetchPosts();
 
-    return () => dispatch(reset());
+    // return () => dispatch(reset());
   }, [dispatch, isError, message]);
   if (isLoading) {
     return <Spinner />;
@@ -44,9 +53,10 @@ const Home = () => {
         {toggled && <PostForm />}
 
         <section className="content">
-          {posts.length > 0 ? (
+          {apiPosts.length > 0 ? (
             <div className="posts">
-              {posts.map((post) => (
+              {/* {posts.map((post) => ( */}
+              {apiPosts.map((post) => (
                 <PostItem key={post.id} post={post} />
               ))}
             </div>
