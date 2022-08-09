@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <Router>
+        <Header />
         <div className="container">
-          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/universities" element={<Universities />} />
