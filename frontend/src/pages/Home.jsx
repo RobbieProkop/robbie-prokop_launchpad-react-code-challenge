@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
+import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
 import { getPosts, setToggleForm, reset } from "../features/posts/postSlice";
 
@@ -50,7 +51,7 @@ const Home = () => {
               ))}
             </div>
           ) : (
-            <h3>"No posts to show"</h3>
+            <h3>No posts to show</h3>
           )}
         </section>
         <div className="bg1">
