@@ -189,6 +189,7 @@ p {
 
   .content {
     @include flex-center();
+    max-width: 80%;
     .post {
       border: 1px solid $white;
       margin: 10px 0;

@@ -1,11 +1,24 @@
+import { useDispatch } from "react-redux";
+import { deletePost } from "../features/posts/postSlice";
+
 const PostItem = ({ post }) => {
+  const editHandler = () => {};
+  const deleteHandler = () => {};
+  const dispatch = useDispatch();
   return (
     <div className="post">
       <div>
         <h4>User: {post.userId}</h4>
         <div>
-          <button className="btn btn-edit">Edit</button>
-          <button className="btn btn-delete">Delete</button>
+          <button onClick={editHandler} className="btn btn-edit">
+            Edit
+          </button>
+          <button
+            onClick={() => dispatch(deletePost(post.id))}
+            className="btn btn-delete"
+          >
+            Delete
+          </button>
         </div>
       </div>
       <h4>ID: {post.id}</h4>

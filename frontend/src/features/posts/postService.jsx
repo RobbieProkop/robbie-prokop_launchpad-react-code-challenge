@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://jsonplaceholder.typicode.com/posts";
+const API_URL = "https://jsonplaceholder.typicode.com/posts/";
 //Create new post
 
 const createPost = async (postData) => {
@@ -15,9 +15,16 @@ const getPosts = async () => {
   return data;
 };
 
+// Delete individual post
+const deletePost = async (postId) => {
+  const { data } = await axios.delete(API_URL + postId);
+  return postId;
+};
+
 const postService = {
   createPost,
   getPosts,
+  deletePost,
 };
 
 export default postService;
