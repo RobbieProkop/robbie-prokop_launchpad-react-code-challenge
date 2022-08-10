@@ -5,11 +5,26 @@ const initialState = {
   //i'm adding an extra array here. need to remove it
   posts: [],
   postForm: false,
+  editPost: false,
   isError: false,
   isLoading: false,
   isSuccessful: false,
   message: "",
 };
+
+//Get API Posts
+export const getPosts = createAsyncThunk(
+  "posts/getAll",
+  async (_, thunkAPI) => {
+    try {
+      return await postService.getPosts();
+    } catch (error) {
+      const message =
+        error.response.data.message || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 //Create new Post
 export const createPost = createAsyncThunk(
@@ -25,12 +40,12 @@ export const createPost = createAsyncThunk(
   }
 );
 
-//Get API Posts
-export const getPosts = createAsyncThunk(
-  "posts/getAll",
-  async (_, thunkAPI) => {
+//Edit Post
+export const editPost = createAsyncThunk(
+  "posts/create",
+  async (postData, thunkAPI) => {
     try {
-      return await postService.getPosts();
+      return await postService.editPost(postData);
     } catch (error) {
       const message =
         error.response.data.message || error.message || error.toString();
@@ -60,6 +75,9 @@ export const postSlice = createSlice({
     reset: (state) => initialState,
     setToggleForm(state) {
       state.postForm = !state.postForm;
+    },
+    setEditPost(state) {
+      state.editPost = !state.editPost;
     },
   },
   extraReducers: (builder) => {
@@ -96,7 +114,7 @@ export const postSlice = createSlice({
       .addCase(deletePost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        // state.posts = state.posts[0].filter(
+        // state.posts = state.posts.filter(
         //   (post) => post.id !== action.payload
         // );
       })
@@ -108,5 +126,5 @@ export const postSlice = createSlice({
   },
 });
 
-export const { reset, setToggleForm } = postSlice.actions;
+export const { reset, setToggleForm, setEditPost } = postSlice.actions;
 export default postSlice.reducer;

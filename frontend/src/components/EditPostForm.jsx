@@ -6,11 +6,12 @@ import {
   setEditPost,
 } from "../features/posts/postSlice";
 
-const PostForm = () => {
-  const [userId, setUserId] = useState("");
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+const EditPostForm = ({ post }) => {
+  const [userId, setUserId] = useState(post.userId);
+  const [title, setTitle] = useState(post.title);
+  const [body, setBody] = useState(post.body);
   const dispatch = useDispatch();
+  const editPost = useSelector((state) => state.posts.editPost);
 
   const toggleForm = () => {
     dispatch(setToggleForm());
@@ -32,13 +33,7 @@ const PostForm = () => {
           <label htmlFor="text">
             UserID <span onClick={toggleForm}>X</span>
           </label>
-          <input
-            type="text"
-            name="text"
-            id="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-          />
+          <input type="text" name="text" id="text" value={userId} disabled />
           <label htmlFor="text">Title</label>
           <input
             type="text"
@@ -58,11 +53,11 @@ const PostForm = () => {
         </div>
         <div className="form-group">
           <button className="btn btn-block" type="submit">
-            Submit Post
+            Edit Post
           </button>
         </div>
       </form>
     </section>
   );
 };
-export default PostForm;
+export default EditPostForm;

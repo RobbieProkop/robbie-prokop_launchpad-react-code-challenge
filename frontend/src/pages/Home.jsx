@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
+import EditPostForm from "../components/EditPostForm";
 import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
+import { toast } from "react-toastify";
 import { getPosts, setToggleForm, reset } from "../features/posts/postSlice";
 
 const Home = () => {
@@ -21,6 +23,7 @@ const Home = () => {
 
   useEffect(() => {
     if (isError) {
+      toast.error(message);
       console.log(message);
     }
     dispatch(getPosts());
@@ -33,29 +36,33 @@ const Home = () => {
 
   return (
     <>
-      <div className="container">
-        <section className="heading">
-          <h1>Posts Dashboard</h1>
-          <button className="btn" onClick={addPostHandler}>
-            Add a post!
-          </button>
-        </section>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="container">
+          <section className="heading">
+            <h1>Posts Dashboard</h1>
+            <button className="btn" onClick={addPostHandler}>
+              Add a post!
+            </button>
+          </section>
 
-        {toggled && <PostForm />}
+          {toggled && <PostForm />}
 
-        <section className="content">
-          {posts.length > 0 ? (
-            <div className="posts">
-              {/* after removing the extra outside array, change this to posts.map */}
-              {posts[0].map((post) => (
-                <PostItem key={post.id} post={post} />
-              ))}
-            </div>
-          ) : (
-            <h3>No posts to show</h3>
-          )}
-        </section>
-      </div>
+          <section className="content">
+            {posts.length > 0 ? (
+              <div className="posts">
+                {/* after removing the extra outside array, change this to posts.map */}
+                {posts[0].map((post) => (
+                  <PostItem key={post.id} post={post} />
+                ))}
+              </div>
+            ) : (
+              <h3>No posts to show</h3>
+            )}
+          </section>
+        </div>
+      )}
 
       {/* <div class="bg1">
         <h2>Battery</h2>

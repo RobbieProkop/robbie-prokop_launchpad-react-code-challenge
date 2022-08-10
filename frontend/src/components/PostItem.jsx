@@ -1,10 +1,18 @@
-import { useDispatch } from "react-redux";
-import { deletePost } from "../features/posts/postSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deletePost,
+  setToggleForm,
+  setEditPost,
+} from "../features/posts/postSlice";
 
 const PostItem = ({ post }) => {
-  const editHandler = () => {};
-  const deleteHandler = () => {};
   const dispatch = useDispatch();
+  const postForm = useSelector((state) => state.posts.postForm);
+  const editHandler = () => {
+    dispatch(setEditPost());
+    // dispatch(setToggleForm());
+  };
+
   return (
     <div className="post">
       <div>
@@ -14,6 +22,7 @@ const PostItem = ({ post }) => {
             Edit
           </button>
           <button
+            //This would work if I had access to the backend. Need the deletePost to return the post.id in order to filter it out.
             onClick={() => dispatch(deletePost(post.id))}
             className="btn btn-delete"
           >
