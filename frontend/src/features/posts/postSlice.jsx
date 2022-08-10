@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import postService from "./postService";
 
 const initialState = {
+  //i'm adding an extra array here. need to remove it
   posts: [],
   postForm: false,
   isError: false,
@@ -48,34 +49,34 @@ export const postSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // builder
-    //   .addCase(getPosts.pending, (state) => {
-    //     state.isLoading = true;
-    //   })
-    // .addCase(getPosts.success, (state, action) => {
-    //   state.isLoading = false;
-    //   state.isSuccessful = true;
-    //   state.posts.push(action.payload);
-    // });
-    //   .addCase(getPosts.fail, (state, action) => {
-    //     state.isLoading = false;
-    //     state.isError = true;
-    //     state.message = action.payload;
-    //   });
-    //Can use this if posting to a real API
-    //   .addCase(createPost.pending, (state) => {
-    //     state.isLoading = true;
-    //   })
-    //   .addCase(createPost.success, (state, action) => {
-    //     state.isLoading = false;
-    //     state.isSuccessful = true;
-    //     state.posts.push(action.payload);
-    //   })
-    //   .addCase(createPost.fail, (state, action) => {
-    //     state.isLoading = false;
-    //     state.isError = true;
-    //     state.message = action.payload;
-    //   });
+    builder
+      .addCase(getPosts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPosts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccessful = true;
+        state.posts.push(action.payload);
+      })
+      .addCase(getPosts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      //Can use this if posting to a real API
+      .addCase(createPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccessful = true;
+        state.posts.push(action.payload);
+      })
+      .addCase(createPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      });
   },
 });
 

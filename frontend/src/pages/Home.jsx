@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
 import PostItem from "../components/PostItem";
@@ -20,21 +19,13 @@ const Home = () => {
     }
   };
 
-  const [apiPosts, setApiPosts] = useState([]);
   useEffect(() => {
     if (isError) {
       console.log(message);
     }
-    // dispatch(getPosts());
-    const fetchPosts = async () => {
-      const { data } = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      setApiPosts(data);
-    };
-    fetchPosts();
+    dispatch(getPosts());
 
-    // return () => dispatch(reset());
+    return () => dispatch(reset());
   }, [dispatch, isError, message]);
   if (isLoading) {
     return <Spinner />;
@@ -53,10 +44,10 @@ const Home = () => {
         {toggled && <PostForm />}
 
         <section className="content">
-          {apiPosts.length > 0 ? (
+          {posts.length > 0 ? (
             <div className="posts">
-              {/* {posts.map((post) => ( */}
-              {apiPosts.map((post) => (
+              {/* after removing the extra outside array, change this to posts.map */}
+              {posts[0].map((post) => (
                 <PostItem key={post.id} post={post} />
               ))}
             </div>
@@ -64,12 +55,6 @@ const Home = () => {
             <h3>No posts to show</h3>
           )}
         </section>
-        <div className="bg1">
-          <h2>
-            Name <span>| text</span>
-          </h2>
-          <p>post info</p>
-        </div>
       </div>
 
       {/* <div class="bg1">
