@@ -1,21 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { deletePost, setEditForm, editPost } from "../features/posts/postSlice";
+import { Link, useParams } from "react-router-dom";
+import {
+  deletePost,
+  selectPostById,
+  setEditForm,
+} from "../features/posts/postSlice";
 
-const PostItem = ({ post }) => {
+const SinglePost = () => {
   const dispatch = useDispatch();
-  const postForm = useSelector((state) => state.posts.postForm);
+  const { postId } = useParams();
+  const post = useSelector((state) => selectPostById(state, Number(postId)));
+
   const editHandler = () => {
     // dispatch(editPost(post.id));
     dispatch(setEditForm());
   };
 
+  if (!post) {
+    return (
+      <section>
+        <h2>Post Not Found</h2>
+      </section>
+    );
+  }
   return (
     <div className="post">
       <div>
         <h4>User: {post.userId}</h4>
         <div>
-          {/* {console.log("post id", post.id)} */}
+          {console.log("post id", post.id)}
           <Link
             to={`/edit/${post.id}`}
             onClick={editHandler}
@@ -40,4 +53,4 @@ const PostItem = ({ post }) => {
     </div>
   );
 };
-export default PostItem;
+export default SinglePost;

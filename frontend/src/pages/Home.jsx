@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
 import EditPostForm from "../components/EditPostForm";
@@ -14,6 +14,8 @@ const Home = () => {
   const { posts, isLoading, isError, message } = useSelector(
     (state) => state.posts
   );
+
+  const [search, setSearch] = useState("");
 
   const addPostHandler = (e) => {
     e.preventDefault();
@@ -46,6 +48,22 @@ const Home = () => {
             <button className="btn" onClick={addPostHandler}>
               Add a post!
             </button>
+            <div className="search">
+              <label htmlFor="postSearch">Search post by ID</label>
+              <input
+                type="number"
+                type="text"
+                name="text"
+                id="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              {/* {[...Array(posts.id).keys()].map((x) => (
+                  <option key={x + 1} value={x + 1}>
+                    {x + 1}
+                  </option>
+                ))} */}
+            </div>
           </section>
 
           {togglePostForm && <PostForm />}

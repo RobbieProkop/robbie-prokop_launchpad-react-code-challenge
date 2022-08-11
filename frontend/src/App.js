@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./pages/ErrorPage";
 import EditPostForm from "./components/EditPostForm";
+import SinglePost from "./pages/SinglePost";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path=":postId" element={<EditPostForm />} />
+          {/* <Route path="/posts/:postId" element={<SinglePost />} /> */}
+          {/* <Route path="/posts/edit/:postId" element={<EditPostForm />} /> */}
           <Route path="/universities" element={<Universities />} />
           <Route path="/postal" element={<PostalLookup />} />
           <Route path="*" element={<ErrorPage />} />

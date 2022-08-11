@@ -138,6 +138,15 @@ p {
     @include flex-center();
     flex-direction: column;
     margin-bottom: 1rem;
+    width: 80%;
+    .search {
+      @include flex-center();
+      flex-direction: column;
+      align-self: end;
+      input {
+        padding: 5px 10px;
+      }
+    }
   }
 
   .form {
