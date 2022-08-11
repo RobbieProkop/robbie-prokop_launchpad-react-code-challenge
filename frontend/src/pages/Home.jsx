@@ -31,7 +31,8 @@ const Home = () => {
     }
     dispatch(getPosts());
 
-    return () => dispatch(reset());
+    //to be used if i want to reset state after moving to another page
+    // return () => dispatch(reset());
   }, [dispatch, isError, message]);
   if (isLoading) {
     return <Spinner />;
@@ -56,6 +57,7 @@ const Home = () => {
                 name="text"
                 id="text"
                 value={search}
+                placeholder="ID:"
                 onChange={(e) => setSearch(e.target.value)}
               />
               {/* {[...Array(posts.id).keys()].map((x) => (
@@ -73,9 +75,17 @@ const Home = () => {
             {posts.length > 0 ? (
               <div className="posts">
                 {/* after removing the extra outside array, change this to posts.map */}
-                {posts[0].map((post) => (
-                  <PostItem key={post.id} post={post} />
-                ))}
+                {posts[0]
+                  .filter((post) => {
+                    if (search === "") {
+                      return post;
+                    } else if (post.id === Number(search)) {
+                      return post;
+                    }
+                  })
+                  .map((post) => (
+                    <PostItem key={post.id} post={post} />
+                  ))}
               </div>
             ) : (
               <h3>No posts to show</h3>
