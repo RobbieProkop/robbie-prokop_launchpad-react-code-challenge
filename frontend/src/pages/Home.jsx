@@ -50,6 +50,8 @@ const Home = () => {
             <button className="btn" onClick={addPostHandler}>
               Add a post!
             </button>
+
+            {/* THIS IS NOT DOING A GET REQUEST BY POST ID, IT IS FILTERING THE POSTS INSTEAD. MAY CHANGE LATER */}
             <div className="search">
               <div className="column">
                 <label htmlFor="postSearch">Search by User</label>
