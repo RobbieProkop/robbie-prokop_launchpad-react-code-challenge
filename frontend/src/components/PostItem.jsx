@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { deletePost, setEditForm, editPost } from "../features/posts/postSlice";
 
 const PostItem = ({ post }) => {
   const dispatch = useDispatch();
   const postForm = useSelector((state) => state.posts.postForm);
   const editHandler = () => {
-    dispatch(editPost(post.id));
+    // dispatch(editPost(post.id));
     dispatch(setEditForm());
   };
 
@@ -14,9 +15,14 @@ const PostItem = ({ post }) => {
       <div>
         <h4>User: {post.userId}</h4>
         <div>
-          <button onClick={editHandler} className="btn btn-edit">
+          {console.log("post id", post.id)}
+          <Link
+            to={`/edit/${post.id}`}
+            onClick={editHandler}
+            className="btn btn-edit"
+          >
             Edit
-          </button>
+          </Link>
           <button
             //This would work if I had access to the backend. Need the deletePost to return the post.id in order to filter it out.
             onClick={() => dispatch(deletePost(post.id))}

@@ -68,6 +68,11 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+//Select a single post by id
+export const selectPostById = (state, postId) => {
+  state.posts.posts.find((post) => post.id === postId);
+};
+
 export const postSlice = createSlice({
   name: "post",
   initialState,

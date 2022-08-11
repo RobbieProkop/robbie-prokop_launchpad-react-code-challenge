@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setEditForm, editPost } from "../features/posts/postSlice";
+import { useParams } from "react-router-dom";
+import {
+  setEditForm,
+  editPost,
+  selectPostById,
+} from "../features/posts/postSlice";
 
 const EditPostForm = ({ post }) => {
+  // const { postId } = useParams();
+  // const post = useSelector((state) => selectPostById(state, Number(postId)));
+  console.log("post edit", post);
   const [userId, setUserId] = useState(post.userId);
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
@@ -21,6 +29,14 @@ const EditPostForm = ({ post }) => {
     setBody("");
     toggleForm();
   };
+
+  if (!post) {
+    return (
+      <section>
+        <h2>Post Not Found</h2>
+      </section>
+    );
+  }
 
   return (
     <section className="form">
