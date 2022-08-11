@@ -15,7 +15,8 @@ const Home = () => {
     (state) => state.posts
   );
 
-  const [search, setSearch] = useState("");
+  const [searchId, setSearchId] = useState("");
+  const [userId, setUserId] = useState("");
 
   const addPostHandler = (e) => {
     e.preventDefault();
@@ -50,26 +51,35 @@ const Home = () => {
               Add a post!
             </button>
             <div className="search">
-              <label htmlFor="postSearch">Search post by ID</label>
-              <input
-                type="number"
-                type="text"
-                name="text"
-                id="text"
-                value={search}
-                placeholder="ID:"
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              {/* {[...Array(posts.id).keys()].map((x) => (
-                  <option key={x + 1} value={x + 1}>
-                    {x + 1}
-                  </option>
-                ))} */}
+              <div className="column">
+                <label htmlFor="postSearch">Search by User</label>
+                <input
+                  type="number"
+                  type="text"
+                  name="text"
+                  id="text"
+                  value={userId}
+                  placeholder="User:"
+                  onChange={(e) => setUserId(e.target.value)}
+                />
+              </div>
+              <div className="column">
+                <label htmlFor="postSearch">Search by ID</label>
+                <input
+                  type="number"
+                  type="text"
+                  name="text"
+                  id="text"
+                  value={searchId}
+                  placeholder="ID:"
+                  onChange={(e) => setSearchId(e.target.value)}
+                />
+              </div>
             </div>
           </section>
 
           {togglePostForm && <PostForm />}
-          {toggleEditForm && <EditPostForm />}
+          {/* {toggleEditForm && <EditPostForm />} */}
 
           <section className="content">
             {posts.length > 0 ? (
@@ -77,9 +87,11 @@ const Home = () => {
                 {/* after removing the extra outside array, change this to posts.map */}
                 {posts[0]
                   .filter((post) => {
-                    if (search === "") {
+                    if (searchId === "" && userId === "") {
                       return post;
-                    } else if (post.id === Number(search)) {
+                    } else if (post.id === Number(searchId)) {
+                      return post;
+                    } else if (post.userId === Number(userId)) {
                       return post;
                     }
                   })
