@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deletePost, setEditForm, editPost } from "../features/posts/postSlice";
+import { deletePost, editPost } from "../features/posts/postSlice";
 
 const PostItem = ({ post }) => {
   const dispatch = useDispatch();
   const postForm = useSelector((state) => state.posts.postForm);
-  const editHandler = () => {
-    // dispatch(editPost(post.id));
-    dispatch(setEditForm());
-  };
+  // const editHandler = () => {
+  //   // dispatch(editPost(post.id));
+  // };
 
   return (
     <div className="post">
@@ -18,7 +17,7 @@ const PostItem = ({ post }) => {
           {/* {console.log("post id", post.id)} */}
           <Link
             to={`/edit/${post.id}`}
-            onClick={editHandler}
+            // onClick={editHandler}
             className="btn btn-edit"
           >
             Edit

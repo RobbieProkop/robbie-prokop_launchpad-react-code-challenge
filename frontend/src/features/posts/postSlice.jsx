@@ -5,19 +5,32 @@ const initialState = {
   //i'm adding an extra array here. need to remove it
   posts: [],
   postForm: false,
-  editPost: false,
   isError: false,
   isLoading: false,
   isSuccessful: false,
   message: "",
 };
 
-//Get API Posts
+//Get All Posts
 export const getPosts = createAsyncThunk(
   "posts/getAll",
   async (_, thunkAPI) => {
     try {
       return await postService.getPosts();
+    } catch (error) {
+      const message =
+        error.response.data.message || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+//Get individual post
+export const getOnePost = createAsyncThunk(
+  "posts/getOne",
+  async (postId, thunkAPI) => {
+    try {
+      return await postService.getOnePost(postId);
     } catch (error) {
       const message =
         error.response.data.message || error.message || error.toString();
@@ -70,19 +83,20 @@ export const deletePost = createAsyncThunk(
 
 //Select a single post by id
 export const selectPostById = (state, postId) => {
-  state.posts.posts.find((post) => post.id === postId);
+  console.log(
+    " select 1 ID",
+    state.posts.posts[0].find((post) => post.id === postId)
+  );
+  return state.posts.posts[0].find((post) => post.id === postId);
 };
 
 export const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    // reset: (state) => initialState,
     setToggleForm(state) {
       state.postForm = !state.postForm;
-    },
-    setEditForm(state) {
-      state.editPost = !state.editPost;
     },
   },
   extraReducers: (builder) => {
@@ -145,5 +159,5 @@ export const postSlice = createSlice({
   },
 });
 
-export const { reset, setToggleForm, setEditForm } = postSlice.actions;
+export const { setToggleForm } = postSlice.actions;
 export default postSlice.reducer;

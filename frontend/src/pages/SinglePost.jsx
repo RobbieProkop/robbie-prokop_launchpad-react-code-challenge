@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import {
-  deletePost,
-  selectPostById,
-  setEditForm,
-} from "../features/posts/postSlice";
+import { deletePost, selectPostById } from "../features/posts/postSlice";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
@@ -13,7 +9,6 @@ const SinglePost = () => {
 
   const editHandler = () => {
     // dispatch(editPost(post.id));
-    dispatch(setEditForm());
   };
 
   if (!post) {

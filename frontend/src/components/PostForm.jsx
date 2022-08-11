@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setToggleForm,
-  createPost,
-  setEditPost,
-} from "../features/posts/postSlice";
+import { setToggleForm, createPost } from "../features/posts/postSlice";
 
 const PostForm = () => {
   const [userId, setUserId] = useState("");

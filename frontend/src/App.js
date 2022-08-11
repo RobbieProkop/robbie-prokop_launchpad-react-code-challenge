@@ -5,7 +5,7 @@ import PostalLookup from "./pages/PostalLookup";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./pages/ErrorPage";
-import EditPostForm from "./components/EditPostForm";
+import EditPostForm from "./pages/EditPostForm";
 import SinglePost from "./pages/SinglePost";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/posts/:postId" element={<SinglePost />} /> */}
-          {/* <Route path="/posts/edit/:postId" element={<EditPostForm />} /> */}
+          <Route path="/edit/:postId" element={<EditPostForm />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/postal" element={<PostalLookup />} />
           <Route path="*" element={<ErrorPage />} />

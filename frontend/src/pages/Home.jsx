@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
-import EditPostForm from "../components/EditPostForm";
+import EditPostForm from "../pages/EditPostForm";
 import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
@@ -10,7 +10,6 @@ import { getPosts, setToggleForm, reset } from "../features/posts/postSlice";
 const Home = () => {
   const dispatch = useDispatch();
   const togglePostForm = useSelector((state) => state.posts.postForm);
-  const toggleEditForm = useSelector((state) => state.posts.editPost);
   const { posts, isLoading, isError, message } = useSelector(
     (state) => state.posts
   );
@@ -57,8 +56,7 @@ const Home = () => {
                 <label htmlFor="postSearch">Search by User</label>
                 <input
                   type="number"
-                  type="text"
-                  name="text"
+                  name="user"
                   id="text"
                   value={userId}
                   placeholder="User:"
@@ -69,8 +67,7 @@ const Home = () => {
                 <label htmlFor="postSearch">Search by ID</label>
                 <input
                   type="number"
-                  type="text"
-                  name="text"
+                  name="searchId"
                   id="text"
                   value={searchId}
                   placeholder="ID:"

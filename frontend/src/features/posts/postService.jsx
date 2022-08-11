@@ -8,6 +8,13 @@ const getPosts = async () => {
   return data;
 };
 
+//Get one post
+const getOnePost = async (postId) => {
+  const { data } = await axios.get(API_URL + postId);
+  console.log("data", data);
+  return data;
+};
+
 //Create new post
 const createPost = async (postData) => {
   const { data } = await axios.post(API_URL, postData);
@@ -28,6 +35,7 @@ const deletePost = async (postId) => {
 
 const postService = {
   getPosts,
+  getOnePost,
   createPost,
   editPost,
   deletePost,
