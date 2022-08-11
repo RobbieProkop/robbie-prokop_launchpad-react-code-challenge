@@ -42,10 +42,10 @@ export const createPost = createAsyncThunk(
 
 //Edit Post
 export const editPost = createAsyncThunk(
-  "posts/create",
-  async (postData, thunkAPI) => {
+  "posts/edit",
+  async (postId, postData, thunkAPI) => {
     try {
-      return await postService.editPost(postData);
+      return await postService.editPost(postId, postData);
     } catch (error) {
       const message =
         error.response.data.message || error.message || error.toString();
@@ -54,7 +54,7 @@ export const editPost = createAsyncThunk(
   }
 );
 
-// delete post
+// Delete post
 export const deletePost = createAsyncThunk(
   "posts/delete",
   async (postId, thunkAPI) => {
@@ -76,7 +76,7 @@ export const postSlice = createSlice({
     setToggleForm(state) {
       state.postForm = !state.postForm;
     },
-    setEditPost(state) {
+    setEditForm(state) {
       state.editPost = !state.editPost;
     },
   },
@@ -108,12 +108,26 @@ export const postSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      .addCase(editPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccessful = true;
+        state.posts.push(action.payload);
+      })
+      .addCase(editPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
       .addCase(deletePost.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
+        //this is causing errors because i cannot actually delete a post, and no id is being sent back through action.payload
         // state.posts = state.posts.filter(
         //   (post) => post.id !== action.payload
         // );
@@ -126,5 +140,5 @@ export const postSlice = createSlice({
   },
 });
 
-export const { reset, setToggleForm, setEditPost } = postSlice.actions;
+export const { reset, setToggleForm, setEditForm } = postSlice.actions;
 export default postSlice.reducer;

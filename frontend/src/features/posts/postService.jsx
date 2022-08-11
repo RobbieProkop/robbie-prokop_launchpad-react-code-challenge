@@ -1,29 +1,35 @@
 import axios from "axios";
 
 const API_URL = "https://jsonplaceholder.typicode.com/posts/";
-//Create new post
 
+//Get all posts
+const getPosts = async () => {
+  const { data } = await axios.get(API_URL);
+  return data;
+};
+
+//Create new post
 const createPost = async (postData) => {
   const { data } = await axios.post(API_URL, postData);
   return data;
 };
 
-//Get all posts
-const getPosts = async () => {
-  const { data } = await axios.get(API_URL);
-  console.log("getpost data", data);
+// Edit individual post
+const editPost = async (postId, postData) => {
+  const { data } = await axios.put(API_URL + postId, postData);
   return data;
 };
 
 // Delete individual post
 const deletePost = async (postId) => {
   const { data } = await axios.delete(API_URL + postId);
-  return postId;
+  return data;
 };
 
 const postService = {
-  createPost,
   getPosts,
+  createPost,
+  editPost,
   deletePost,
 };
 

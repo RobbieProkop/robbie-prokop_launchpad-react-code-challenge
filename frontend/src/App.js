@@ -4,6 +4,7 @@ import Universities from "./pages/Universities";
 import PostalLookup from "./pages/PostalLookup";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/postal" element={<PostalLookup />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
       </Router>

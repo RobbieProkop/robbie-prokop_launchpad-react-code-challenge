@@ -1,25 +1,21 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setToggleForm,
-  createPost,
-  setEditPost,
-} from "../features/posts/postSlice";
+import { setEditForm, editPost } from "../features/posts/postSlice";
 
 const EditPostForm = ({ post }) => {
   const [userId, setUserId] = useState(post.userId);
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
   const dispatch = useDispatch();
-  const editPost = useSelector((state) => state.posts.editPost);
+  const editPostState = useSelector((state) => state.posts.editPost);
 
   const toggleForm = () => {
-    dispatch(setToggleForm());
+    dispatch(setEditForm());
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost({ body }));
+    dispatch(editPost({ body }));
     setUserId("");
     setTitle("");
     setBody("");

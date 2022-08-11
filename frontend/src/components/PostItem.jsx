@@ -1,16 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deletePost,
-  setToggleForm,
-  setEditPost,
-} from "../features/posts/postSlice";
+import { deletePost, setEditForm, editPost } from "../features/posts/postSlice";
 
 const PostItem = ({ post }) => {
   const dispatch = useDispatch();
   const postForm = useSelector((state) => state.posts.postForm);
   const editHandler = () => {
-    dispatch(setEditPost());
-    // dispatch(setToggleForm());
+    dispatch(editPost(post.id));
+    dispatch(setEditForm());
   };
 
   return (

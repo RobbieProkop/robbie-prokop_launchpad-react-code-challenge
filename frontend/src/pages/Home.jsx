@@ -9,7 +9,8 @@ import { getPosts, setToggleForm, reset } from "../features/posts/postSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const toggled = useSelector((state) => state.posts.postForm);
+  const togglePostForm = useSelector((state) => state.posts.postForm);
+  const toggleEditForm = useSelector((state) => state.posts.editPost);
   const { posts, isLoading, isError, message } = useSelector(
     (state) => state.posts
   );
@@ -17,7 +18,7 @@ const Home = () => {
   const addPostHandler = (e) => {
     e.preventDefault();
     {
-      !toggled && dispatch(setToggleForm());
+      !togglePostForm && dispatch(setToggleForm());
     }
   };
 
@@ -47,7 +48,8 @@ const Home = () => {
             </button>
           </section>
 
-          {toggled && <PostForm />}
+          {togglePostForm && <PostForm />}
+          {toggleEditForm && <EditPostForm />}
 
           <section className="content">
             {posts.length > 0 ? (
