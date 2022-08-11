@@ -5,7 +5,7 @@ import EditPostForm from "../pages/EditPostForm";
 import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
-import { getPosts, setToggleForm, reset } from "../features/posts/postSlice";
+import { getPosts, setToggleForm } from "../features/posts/postSlice";
 
 const Home = () => {
   const dispatch = useDispatch();

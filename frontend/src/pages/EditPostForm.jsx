@@ -18,9 +18,9 @@ const EditPostForm = () => {
   const { postId } = useParams();
   const post = useSelector((state) => selectPostById(state, Number(postId)));
   console.log("post edit", post);
-  // const [userId, setUserId] = useState(post.userId);
-  // const [title, setTitle] = useState(post.title);
-  // const [body, setBody] = useState(post.body);
+  const [userId, setUserId] = useState(post.userId);
+  const [title, setTitle] = useState(post.title);
+  const [body, setBody] = useState(post.body);
 
   // const onSubmit = (e) => {
   //   e.preventDefault();
@@ -59,7 +59,7 @@ const EditPostForm = () => {
             <input
               type="text"
               name="text"
-              id="text"
+              id="userID-form"
               value={post.userId}
               disabled
             />
@@ -67,17 +67,18 @@ const EditPostForm = () => {
             <input
               type="text"
               name="text"
-              id="text"
-              value={post.title}
-              // onChange={(e) => setTitle(e.target.value)}
+              id="title-form"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <label htmlFor="text">Post</label>
-            <input
+            <textarea
               type="text"
               name="text"
-              id="text"
-              value={post.body}
-              // onChange={(e) => setBody(e.target.value)}
+              rows="4"
+              id="post-form"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
             />
           </div>
           <div className="form-group">

@@ -137,7 +137,6 @@ p {
   .heading {
     @include flex-center();
     flex-direction: column;
-    margin-bottom: 1rem;
     width: 80%;
     .search {
       @include flex-between();
@@ -157,7 +156,6 @@ p {
   }
 
   .form {
-    margin-top: 0.6rem;
     padding: 2rem;
     border-radius: 15px;
     color: $black;
@@ -189,6 +187,8 @@ p {
         border: 1px solid $black;
         margin: 10px 0;
         font-family: inherit;
+        font-size: 1rem;
+        resize: none;
       }
       input:focus-visible {
         outline: #000;
@@ -198,7 +198,7 @@ p {
 
       .btn-block {
         width: 100%;
-        margin-bottom: 1.2rem;
+        margin-top: 1.2rem;
       }
     }
   }
@@ -206,6 +206,7 @@ p {
   .content {
     @include flex-center();
     max-width: 80%;
+    margin-top: 1rem;
     .post {
       border: 1px solid $white;
       margin: 10px 0;
@@ -323,4 +324,5 @@ p {
   background: $primaryColor;
   color: $black;
   height: 70px;
+  margin-top: 2rem;
 }
