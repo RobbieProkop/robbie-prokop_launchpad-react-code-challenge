@@ -7,7 +7,7 @@ import PostItem from "../components/PostItem";
 import ErrorPage from "./ErrorPage";
 import {
   editPost,
-  getOnePost,
+  deletePost,
   selectPostById,
 } from "../features/posts/postSlice";
 
@@ -93,6 +93,13 @@ const EditPostForm = () => {
           <div className="form-group">
             <button className="btn btn-block" type="submit">
               Edit Post
+            </button>
+            <button
+              //This would work if I had access to the backend. Need the deletePost to return the post.id in order to filter it out.
+              onClick={() => dispatch(deletePost(post.id))}
+              className="btn btn-delete"
+            >
+              Delete
             </button>
           </div>
         </form>

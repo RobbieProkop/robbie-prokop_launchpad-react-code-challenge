@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import ErrorPage from "./pages/ErrorPage";
 import EditPostForm from "./pages/EditPostForm";
 import SinglePost from "./pages/SinglePost";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (

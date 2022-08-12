@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { setToggleForm, createPost } from "../features/posts/postSlice";
 
 const PostForm = () => {
@@ -32,6 +33,12 @@ const PostForm = () => {
         toast.error(message);
         console.log(message);
       }
+    } else {
+      console.log("Please fill in all fields!");
+      toast.error("please fill in all fields", {
+        position: toast.POSITION.TOP_LEFT,
+      });
+      <ToastContainer />;
     }
   };
 
