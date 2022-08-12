@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { setToggleForm, createPost } from "../features/posts/postSlice";
 
 const PostForm = () => {
@@ -12,13 +13,26 @@ const PostForm = () => {
     dispatch(setToggleForm());
   };
 
+  const canSave = [userId, title, body].every(
+    (el) => el.toString().length >= 1
+  );
+
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost({ body, title, userId }));
-    setUserId("");
-    setTitle("");
-    setBody("");
-    toggleForm();
+    if (canSave) {
+      try {
+        dispatch(createPost({ body, title, userId }));
+        setUserId("");
+        setTitle("");
+        setBody("");
+        toggleForm();
+      } catch (error) {
+        const message =
+          error.response.data.message || error.message || error.toString();
+        toast.error(message);
+        console.log(message);
+      }
+    }
   };
 
   return (
