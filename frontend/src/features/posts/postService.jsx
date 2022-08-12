@@ -32,7 +32,9 @@ const editPost = async (postId, postData) => {
 const deletePost = async (postId) => {
   const { data } = await axios.delete(API_URL + postId);
   console.log("delete data", data);
-  return data;
+  // normally we do this, but we cannot since the api only returns an empty object
+  // return data;
+  return postId;
 };
 
 const postService = {

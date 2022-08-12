@@ -143,9 +143,7 @@ export const postSlice = createSlice({
           return console.log("could not update post");
         }
         const { id } = action.payload;
-        console.log("edited id", id);
         const posts = state.posts.filter((post) => post.id !== id);
-        console.log("posts adter edit", action.payload);
         state.posts.push(action.payload);
       })
       .addCase(editPost.rejected, (state, action) => {
@@ -159,12 +157,13 @@ export const postSlice = createSlice({
       .addCase(deletePost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        if (!action.payload?.id) {
+        if (!action.payload) {
           console.log("Delete failed");
+          console.log(action.payload);
+          return;
         }
-        const { id } = action.payload;
-        //this is causing errors because i cannot actually delete a post, and no id is being sent back through action.payload
-        const posts = state.posts.filter((post) => post.id !== id);
+        //cannot delete posts from the json typicode api, only posts that I've created
+        const posts = state.posts.filter((post) => post.id !== action.payload);
         state.posts = posts;
       })
       .addCase(deletePost.rejected, (state, action) => {

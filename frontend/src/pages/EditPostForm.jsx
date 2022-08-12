@@ -92,7 +92,7 @@ const EditPostForm = () => {
           </div>
           <div className="form-group">
             <button className="btn btn-block" type="submit">
-              Edit Post
+              Submit Edit
             </button>
             <button
               //This would work if I had access to the backend. Need the deletePost to return the post.id in order to filter it out.
