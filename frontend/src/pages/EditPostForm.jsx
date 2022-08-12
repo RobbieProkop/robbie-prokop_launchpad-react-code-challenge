@@ -30,7 +30,10 @@ const EditPostForm = () => {
     e.preventDefault();
     if (canSave) {
       try {
-        dispatch(editPost({ id: post.id, title, body, userId }));
+        dispatch(editPost({ id: post.id, title, body, userId })).unwrap();
+        setUserId("");
+        setTitle("");
+        setBody("");
         navigate("/");
       } catch (error) {
         const message =

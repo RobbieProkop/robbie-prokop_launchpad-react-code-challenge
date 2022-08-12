@@ -23,12 +23,14 @@ const createPost = async (postData) => {
 // Edit individual post
 const editPost = async (postId, postData) => {
   const { data } = await axios.put(API_URL + postId, postData);
+  console.log("edit data", data);
   return data;
 };
 
 // Delete individual post
 const deletePost = async (postId) => {
   const { data } = await axios.delete(API_URL + postId);
+  console.log("delete data", data);
   return data;
 };
 

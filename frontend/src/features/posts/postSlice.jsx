@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import postService from "./postService";
 
 const initialState = {
@@ -56,13 +57,17 @@ export const createPost = createAsyncThunk(
 //Edit Post
 export const editPost = createAsyncThunk(
   "posts/edit",
-  async (postId, postData, thunkAPI) => {
+  async (postData, thunkAPI) => {
+    const { postId } = postData;
     try {
-      return await postService.editPost(postId, postData);
+      const res = await postService.editPost(postId, postData);
+      console.log("edit is working", res);
+      return res;
     } catch (error) {
       const message =
         error.response.data.message || error.message || error.toString();
-      return thunkAPI.rejectWithValue(message);
+      return postData;
+      // return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -129,7 +134,15 @@ export const postSlice = createSlice({
       .addCase(editPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        state.posts.push(action.payload);
+        console.log("updated action.payload title", action.payload.title);
+        if (!action.payload?.id) {
+          console.log("action payload", action.payload);
+          return console.log("could not update post");
+        }
+        const { id } = action.payload;
+        const posts = state.posts.filter((post) => post.id !== id);
+        state.posts = [...posts, action.payload];
+        // state.posts.push(action.payload);
       })
       .addCase(editPost.rejected, (state, action) => {
         state.isLoading = false;

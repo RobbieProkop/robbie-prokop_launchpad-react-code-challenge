@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/posts/:postId" element={<SinglePost />} /> */}
-          <Route path="/edit/:postId" element={<EditPostForm />} />
+          <Route path="/:postId" element={<EditPostForm />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/postal" element={<PostalLookup />} />
           <Route path="*" element={<ErrorPage />} />

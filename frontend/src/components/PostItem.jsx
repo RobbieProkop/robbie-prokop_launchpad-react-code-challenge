@@ -14,9 +14,8 @@ const PostItem = ({ post }) => {
       <div>
         <h4>User: {post.userId}</h4>
         <div>
-          {/* {console.log("post id", post.id)} */}
           <Link
-            to={`/edit/${post.id}`}
+            to={`/${post.id}`}
             // onClick={editHandler}
             className="btn btn-edit"
           >
