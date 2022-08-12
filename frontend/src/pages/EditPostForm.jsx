@@ -14,16 +14,14 @@ import {
 const EditPostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { posts, isLoading, isError, message } = useSelector(
-    (state) => state.posts
-  );
   const { postId } = useParams();
+
+  const { isLoading, isError, message } = useSelector((state) => state.posts);
   const post = useSelector((state) => selectPostById(state, Number(postId)));
 
-  console.log(posts);
-  // const [userId, setUserId] = useState(post.userId);
   const [title, setTitle] = useState(post ? post.title : "");
   const [body, setBody] = useState(post ? post.body : "");
+
   if (!post) {
     return <ErrorPage />;
   }
