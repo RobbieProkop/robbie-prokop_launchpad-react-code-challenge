@@ -3,7 +3,7 @@ import axios from "axios";
 import postService from "./postService";
 
 const initialState = {
-  //i'm adding an extra array here. need to remove it
+  //this is adding an extra array here. need to remove it
   posts: [],
   postForm: false,
   isError: false,
@@ -89,7 +89,7 @@ export const deletePost = createAsyncThunk(
 
 //Select a single post by id
 export const selectPostById = (state, postId) => {
-  return state.posts.posts[0].find((post) => post.id === postId);
+  return state.posts.posts.find((post) => post.id === postId);
 };
 
 export const postSlice = createSlice({
@@ -109,7 +109,8 @@ export const postSlice = createSlice({
       .addCase(getPosts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        state.posts.push(action.payload);
+        console.log("get posts action", action.payload);
+        state.posts = action.payload;
       })
       .addCase(getPosts.rejected, (state, action) => {
         state.isLoading = false;
@@ -123,7 +124,7 @@ export const postSlice = createSlice({
         state.isLoading = false;
         state.isSuccessful = true;
         console.log("createPost payload", action.payload);
-        state.posts[0].push(action.payload);
+        state.posts.push(action.payload);
       })
       .addCase(createPost.rejected, (state, action) => {
         state.isLoading = false;
@@ -142,7 +143,9 @@ export const postSlice = createSlice({
           return console.log("could not update post");
         }
         const { id } = action.payload;
+        console.log("edited id", id);
         const posts = state.posts.filter((post) => post.id !== id);
+        console.log("posts adter edit", posts);
         state.posts = [...posts, action.payload];
       })
       .addCase(editPost.rejected, (state, action) => {

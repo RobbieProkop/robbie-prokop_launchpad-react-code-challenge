@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostItem from "../components/PostItem";
+import ErrorPage from "./ErrorPage";
 import {
   editPost,
   getOnePost,
@@ -18,20 +19,24 @@ const EditPostForm = () => {
   );
   const { postId } = useParams();
   const post = useSelector((state) => selectPostById(state, Number(postId)));
-  const [userId, setUserId] = useState(post.userId);
-  const [title, setTitle] = useState(post.title);
-  const [body, setBody] = useState(post.body);
 
-  const canSave = [userId, title, body].every(
-    (el) => el.toString().length >= 1
-  );
+  console.log(posts);
+  // const [userId, setUserId] = useState(post.userId);
+  const [title, setTitle] = useState(post ? post.title : "");
+  const [body, setBody] = useState(post ? post.body : "");
+  if (!post) {
+    return <ErrorPage />;
+  }
 
-  const editHandler = (e) => {
+  const canSave = [title, body].every((el) => el.toString().length >= 1);
+
+  const onSubmit = (e) => {
     e.preventDefault();
     if (canSave) {
       try {
-        dispatch(editPost({ id: post.id, title, body, userId })).unwrap();
-        setUserId("");
+        dispatch(
+          editPost({ id: post.id - 1, title, body, userId: post.userId })
+        ).unwrap();
         setTitle("");
         setBody("");
         navigate("/");
@@ -44,21 +49,13 @@ const EditPostForm = () => {
     }
   };
 
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-      console.log(message);
-    }
-    dispatch(getOnePost(postId));
-  }, [dispatch]);
-
-  if (!post) {
-    return (
-      <section>
-        <h2>Post Not Found</h2>
-      </section>
-    );
-  }
+  // useEffect(() => {
+  //   if (isError) {
+  //     toast.error(message);
+  //     console.log(message);
+  //   }
+  //   dispatch(getOnePost(postId));
+  // }, [dispatch]);
 
   return (
     <div className="container">
@@ -67,14 +64,14 @@ const EditPostForm = () => {
       </section>
 
       <section className="form">
-        <form onSubmit={editHandler}>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <label htmlFor="text">UserID</label>
             <input
               type="text"
               name="text"
               id="userID-form"
-              value={userId}
+              value={post.userId}
               disabled
             />
             <label htmlFor="text">Title</label>

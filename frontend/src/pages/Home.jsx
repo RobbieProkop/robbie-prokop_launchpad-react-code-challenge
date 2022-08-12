@@ -84,7 +84,7 @@ const Home = () => {
             {posts.length > 0 ? (
               <div className="posts">
                 {/* after removing the extra outside array, change this to posts.map */}
-                {posts[0]
+                {posts
                   .filter((post) => {
                     if (searchId === "" && userId === "") {
                       return post;

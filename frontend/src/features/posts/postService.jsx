@@ -5,6 +5,7 @@ const API_URL = "https://jsonplaceholder.typicode.com/posts/";
 //Get all posts
 const getPosts = async () => {
   const { data } = await axios.get(API_URL);
+  console.log("servive get", data);
   return data;
 };
 
