@@ -107,6 +107,19 @@ p {
   }
 }
 
+.btn-edit {
+  padding: 5px 20px;
+  background: $white;
+  margin-right: 10px;
+  border: 1px solid $white;
+  &:hover {
+    background: $black;
+    border: 1px solid $black;
+    color: $white;
+    transform: translate(0.2rem, -0.2rem);
+  }
+}
+
 .btn-delete {
   background: $black;
   color: $white;
@@ -237,18 +250,6 @@ p {
         div {
           @include flex-between();
           padding-top: 5px;
-          .btn-edit {
-            padding: 5px 20px;
-            background: $white;
-            margin-right: 10px;
-            border: 1px solid $white;
-            &:hover {
-              background: $black;
-              border: 1px solid $black;
-              color: $white;
-              transform: translate(0.2rem, -0.2rem);
-            }
-          }
         }
       }
     }

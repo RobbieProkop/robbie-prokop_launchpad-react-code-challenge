@@ -3,6 +3,7 @@ import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUnis } from "../features/uni/uniSlice";
+import UniItem from "../components/UniItem";
 
 const Universities = () => {
   const dispatch = useDispatch();
@@ -56,10 +57,16 @@ const Universities = () => {
           </section>
 
           <section className="uni-content">
-            {/* {posts.length > 0 ? (
-            <div className="posts">
-              {posts
-                .filter((post) => {
+            {unis.length > 0 ? (
+              <div className="unis">
+                {unis.map(
+                  (uni) => (
+                    console.log(uni.name),
+                    (<UniItem key={uni.name} uni={uni} />)
+                  )
+                )}
+                {/* {unis
+                .filter((uni) => {
                   if (searchId === "" && userId === "") {
                     return post;
                   } else if (post.id === Number(searchId)) {
@@ -70,11 +77,11 @@ const Universities = () => {
                 })
                 .map((post) => (
                   <PostItem key={post.id} post={post} />
-                ))}
-            </div>
-          ) : (
-            <h3>No posts to show</h3>
-          )} */}
+                ))} */}
+              </div>
+            ) : (
+              <h3>No posts to show</h3>
+            )}
             <div className="bg1">
               <h2>Battery</h2>
               <p>Respiration</p>
