@@ -67,8 +67,8 @@ export const editPost = createAsyncThunk(
     } catch (error) {
       const message =
         error.response.data.message || error.message || error.toString();
-      return postData;
       // return thunkAPI.rejectWithValue(message);
+      return postData; //used for development. not production
     }
   }
 );
@@ -122,7 +122,8 @@ export const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        state.posts.push(action.payload);
+        console.log("createPost payload", action.payload);
+        state.posts[0].push(action.payload);
       })
       .addCase(createPost.rejected, (state, action) => {
         state.isLoading = false;
@@ -155,10 +156,13 @@ export const postSlice = createSlice({
       .addCase(deletePost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
+        if (!action.payload?.id) {
+          console.log("Delete failed");
+        }
+        const { id } = action.payload;
         //this is causing errors because i cannot actually delete a post, and no id is being sent back through action.payload
-        // state.posts = state.posts.filter(
-        //   (post) => post.id !== action.payload
-        // );
+        const posts = state.posts.filter((post) => post.id !== id);
+        state.posts = posts;
       })
       .addCase(deletePost.rejected, (state, action) => {
         state.isLoading = false;

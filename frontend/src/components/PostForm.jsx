@@ -14,7 +14,7 @@ const PostForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost({ body }));
+    dispatch(createPost({ body, title, userId }));
     setUserId("");
     setTitle("");
     setBody("");
