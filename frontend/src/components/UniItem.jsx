@@ -1,15 +1,19 @@
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 
-const UniItem = ({ uni }) => {
-  const navigate = useNavigate();
-
+const UniItem = ({ uni, id }) => {
   return (
     <>
-      <a href={`${uni.web_pages[0]}`} target="_blank">
-        <div className="bg1">
-          <h2>Battery</h2>
-          <p>Respiration</p>
+      <a
+        href={`${uni.web_pages[0]}`}
+        target="_blank"
+        className={id % 2 ? "bg1" : "bg2"}
+      >
+        <div>
+          <h2>{uni.name}</h2>
+          <a href={`${uni.web_pages[0]}`} target="_blank">
+            {uni.web_pages[0]}
+          </a>
+          <p>{uni.country}</p>
         </div>
       </a>
     </>

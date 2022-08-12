@@ -12,6 +12,25 @@ const Universities = () => {
     (state) => state.universities
   );
 
+  let id = 0;
+
+  // const addId = (id = 0) => {
+  //   return function recur(obj) {
+  //     if ("name" in obj) {
+  //       obj.id = id++;
+  //     }
+  //     Object.keys(obj).forEach((el) => {
+  //       obj[el].forEach(recur);
+  //     });
+  //   };
+  // };
+
+  // const mapId = (arr) => {
+  //   arr.forEach(addId);
+  // };
+
+  // mapId(dispatch(getUnis()));
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -58,13 +77,13 @@ const Universities = () => {
 
           <section className="uni-content">
             {unis.length > 0 ? (
-              <div className="unis">
-                {unis.map(
-                  (uni) => (
-                    console.log(uni.name),
-                    (<UniItem key={uni.name} uni={uni} />)
-                  )
-                )}
+              // <div className="unis">
+              <>
+                {unis.map((uni) => (
+                  <div>
+                    <UniItem key={uni.name} uni={uni} id={id++} />
+                  </div>
+                ))}
                 {/* {unis
                 .filter((uni) => {
                   if (searchId === "" && userId === "") {
@@ -78,11 +97,11 @@ const Universities = () => {
                 .map((post) => (
                   <PostItem key={post.id} post={post} />
                 ))} */}
-              </div>
+              </>
             ) : (
               <h3>No posts to show</h3>
             )}
-            <div className="bg1">
+            {/* <div className="bg1">
               <h2>Battery</h2>
               <p>Respiration</p>
             </div>
@@ -137,7 +156,7 @@ const Universities = () => {
                 85 <span>%</span>
               </h2>
               <p>Body Hydration</p>
-            </div>
+            </div> */}
           </section>
         </div>
       )}

@@ -9,6 +9,12 @@ const initialState = {
   message: "",
 };
 
+// //Get index of uni in unis
+// export const getuniIndex = (state) => {
+//   return state.university.unis.in
+// }
+
+//Get all Universities
 export const getUnis = createAsyncThunk("uni/getAll", async (_, thunkAPI) => {
   try {
     return await uniService.getUnis();
