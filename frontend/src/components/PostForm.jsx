@@ -44,10 +44,11 @@ const PostForm = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
           <label htmlFor="text">Post</label>
-          <input
+          <textarea
             type="text"
             name="text"
-            id="text"
+            rows="4"
+            id="post-form"
             value={body}
             onChange={(e) => setBody(e.target.value)}
           />
