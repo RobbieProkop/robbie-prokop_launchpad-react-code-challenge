@@ -107,6 +107,18 @@ p {
   }
 }
 
+.btn-delete {
+  background: $black;
+  color: $white;
+  border: 1px solid $black;
+  &:hover {
+    background: $white;
+    border: 1px solid $white;
+    color: $black;
+    transform: translate(0.2rem, -0.2rem);
+  }
+}
+
 .header {
   @include flex-between();
   background-color: $primaryColor;
@@ -229,17 +241,6 @@ p {
               background: $black;
               border: 1px solid $black;
               color: $white;
-              transform: translate(0.2rem, -0.2rem);
-            }
-          }
-          .btn-delete {
-            background: $black;
-            color: $white;
-            border: 1px solid $black;
-            &:hover {
-              background: $white;
-              border: 1px solid $white;
-              color: $black;
               transform: translate(0.2rem, -0.2rem);
             }
           }

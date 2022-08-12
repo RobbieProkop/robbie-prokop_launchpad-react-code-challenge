@@ -97,7 +97,7 @@ const EditPostForm = () => {
             <button
               //This would work if I had access to the backend. Need the deletePost to return the post.id in order to filter it out.
               onClick={() => dispatch(deletePost(post.id))}
-              className="btn btn-delete"
+              className="btn btn-block btn-delete"
             >
               Delete
             </button>
