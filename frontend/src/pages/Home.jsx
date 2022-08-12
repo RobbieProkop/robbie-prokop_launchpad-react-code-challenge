@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PostForm from "../components/PostForm";
-import EditPostForm from "../pages/EditPostForm";
 import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { getPosts, setToggleForm } from "../features/posts/postSlice";
 
 const Home = () => {
@@ -27,6 +26,7 @@ const Home = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message);
+      <ToastContainer />;
       console.log(message);
     }
     dispatch(getPosts());
