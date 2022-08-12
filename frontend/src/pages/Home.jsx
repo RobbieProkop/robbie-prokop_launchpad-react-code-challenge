@@ -34,9 +34,6 @@ const Home = () => {
     //to be used if i want to reset state after moving to another page
     // return () => dispatch(reset());
   }, [dispatch, isError, message]);
-  if (isLoading) {
-    return <Spinner />;
-  }
 
   return (
     <>

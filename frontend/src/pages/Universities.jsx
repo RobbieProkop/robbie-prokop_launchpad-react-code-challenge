@@ -1,17 +1,35 @@
 import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUnis } from "../features/uni/uniSlice";
 
 const Universities = () => {
+  const dispatch = useDispatch();
+
+  const { unis, isLoading, isError, message } = useSelector(
+    (state) => state.universities
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+      <ToastContainer />;
+      console.log(message);
+    }
+    dispatch(getUnis());
+  }, [dispatch, isError, message]);
+
   return (
     <>
-      <div className="container">
-        <section className="heading">
-          <h1>Universities in your country</h1>
-
-          {/* THIS IS NOT DOING A GET REQUEST BY POST ID, IT IS FILTERING THE POSTS INSTEAD. MAY CHANGE LATER */}
-          {/* <div className="search">
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="container">
+          <section className="heading">
+            <h1>Universities in your country</h1>
+            {/* search for unis */}
+            {/* <div className="search">
               <div className="column">
                 <label htmlFor="postSearch">Search by User</label>
                 <input
@@ -35,66 +53,10 @@ const Universities = () => {
                 />
               </div>
             </div> */}
-        </section>
+          </section>
 
-        <section className="uni-content">
-          <div class="bg1">
-            <h2>Battery</h2>
-            <p>Respiration</p>
-          </div>
-          <div class="bg1">
-            <h2>Running</h2>
-            <p>Miles</p>
-          </div>
-          <div class="bg2">
-            <h2>36 &deg;</h2>
-            <p>Temperature</p>
-          </div>
-          <div class="bg1">
-            <h2>Bed</h2>
-            <p>Sleep Keep</p>
-          </div>
-          <div class="bg1">
-            <h2>
-              98 <span>bpm</span>
-            </h2>
-            <p>Heart Rate</p>
-          </div>
-          <div class="bg2">
-            <h2>
-              170 <span>lbs</span>
-            </h2>
-            <p>Weight</p>
-          </div>
-          <div class="bg1">
-            <h2>
-              28 <span>%</span>
-            </h2>
-            <p>Fat Percentage</p>
-          </div>
-          <div class="bg2">
-            <h2>
-              118 <span>mgdl</span>
-            </h2>
-            <p>Blood Glucose</p>
-          </div>
-          <div class="bg2">
-            <h2>
-              680 <span>kcal</span>
-            </h2>
-            <p>AVG Consumption</p>
-          </div>
-          <div class="bg1">
-            <h2>Dumbell</h2>
-            <p>Workouts</p>
-          </div>
-          <div class="bg1">
-            <h2>
-              85 <span>%</span>
-            </h2>
-            <p>Body Hydration</p>
-          </div>
-          {/* {posts.length > 0 ? (
+          <section className="uni-content">
+            {/* {posts.length > 0 ? (
             <div className="posts">
               {posts
                 .filter((post) => {
@@ -113,8 +75,65 @@ const Universities = () => {
           ) : (
             <h3>No posts to show</h3>
           )} */}
-        </section>
-      </div>
+            <div className="bg1">
+              <h2>Battery</h2>
+              <p>Respiration</p>
+            </div>
+            <div className="bg1">
+              <h2>Running</h2>
+              <p>Miles</p>
+            </div>
+            <div className="bg1">
+              <h2>36 &deg;</h2>
+              <p>Temperature</p>
+            </div>
+            <div className="bg2">
+              <h2>Bed</h2>
+              <p>Sleep Keep</p>
+            </div>
+            <div className="bg1">
+              <h2>
+                98 <span>bpm</span>
+              </h2>
+              <p>Heart Rate</p>
+            </div>
+            <div className="bg1">
+              <h2>
+                170 <span>lbs</span>
+              </h2>
+              <p>Weight</p>
+            </div>
+            <div className="bg2">
+              <h2>
+                28 <span>%</span>
+              </h2>
+              <p>Fat Percentage</p>
+            </div>
+            <div className="bg1">
+              <h2>
+                118 <span>mgdl</span>
+              </h2>
+              <p>Blood Glucose</p>
+            </div>
+            <div className="bg2">
+              <h2>
+                680 <span>kcal</span>
+              </h2>
+              <p>AVG Consumption</p>
+            </div>
+            <div className="bg2">
+              <h2>Dumbell</h2>
+              <p>Workouts</p>
+            </div>
+            <div className="bg1">
+              <h2>
+                85 <span>%</span>
+              </h2>
+              <p>Body Hydration</p>
+            </div>
+          </section>
+        </div>
+      )}
     </>
   );
 };
