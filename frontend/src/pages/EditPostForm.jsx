@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostItem from "../components/PostItem";
 import {
@@ -12,31 +12,34 @@ import {
 
 const EditPostForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { posts, isLoading, isError, message } = useSelector(
     (state) => state.posts
   );
   const { postId } = useParams();
   const post = useSelector((state) => selectPostById(state, Number(postId)));
-  console.log("post edit", post);
   const [userId, setUserId] = useState(post.userId);
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(editPost({ body }));
-  //   setUserId("");
-  //   setTitle("");
-  //   setBody("");
-  // };
+  const canSave = [userId, title, body].every(
+    (el) => el.toString().length >= 1
+  );
 
-  // if (!post) {
-  //   return (
-  //     <section>
-  //       <h2>Post Not Found</h2>
-  //     </section>
-  //   );
-  // }
+  const editHandler = (e) => {
+    e.preventDefault();
+    if (canSave) {
+      try {
+        dispatch(editPost({ id: post.id, title, body, userId }));
+        navigate("/");
+      } catch (error) {
+        const message =
+          error.response.data.message || error.message || error.toString();
+        toast.error(message);
+        console.log(message);
+      }
+    }
+  };
 
   useEffect(() => {
     if (isError) {
@@ -46,6 +49,14 @@ const EditPostForm = () => {
     dispatch(getOnePost(postId));
   }, [dispatch]);
 
+  if (!post) {
+    return (
+      <section>
+        <h2>Post Not Found</h2>
+      </section>
+    );
+  }
+
   return (
     <div className="container">
       <section className="heading">
@@ -53,14 +64,14 @@ const EditPostForm = () => {
       </section>
 
       <section className="form">
-        <form>
+        <form onSubmit={editHandler}>
           <div className="form-group">
             <label htmlFor="text">UserID</label>
             <input
               type="text"
               name="text"
               id="userID-form"
-              value={post.userId}
+              value={userId}
               disabled
             />
             <label htmlFor="text">Title</label>

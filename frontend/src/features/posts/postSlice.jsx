@@ -83,10 +83,6 @@ export const deletePost = createAsyncThunk(
 
 //Select a single post by id
 export const selectPostById = (state, postId) => {
-  console.log(
-    " select 1 ID",
-    state.posts.posts[0].find((post) => post.id === postId)
-  );
   return state.posts.posts[0].find((post) => post.id === postId);
 };
 
