@@ -257,10 +257,10 @@ p {
 
   .uni-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    width: 100%;
-    max-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1rem;
+    // width: 100%;
+    max-width: 1200px;
 
     // .heading {
     //   @include flex-center();
@@ -269,9 +269,12 @@ p {
     //     grid-column: 1 /5;
     //   }
     // }
-
+    div {
+      max-width: 100%;
+    }
     a {
-      height: 250px;
+      height: 170px;
+      max-width: 100%;
       @include flex-center();
       flex-direction: column;
       color: $white;
@@ -300,6 +303,13 @@ p {
       &:hover {
         opacity: 0.6;
         transform: scale(0.98);
+      }
+
+      &.uni {
+        @include flex-center();
+        flex-direction: column;
+        width: 100%;
+        height: 170px;
       }
 
       &.bg1 {
