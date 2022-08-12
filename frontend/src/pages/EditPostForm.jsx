@@ -33,7 +33,7 @@ const EditPostForm = () => {
     if (canSave) {
       try {
         dispatch(
-          editPost({ id: post.id - 1, title, body, userId: post.userId })
+          editPost({ id: post.id, title, body, userId: post.userId })
         ).unwrap();
         setTitle("");
         setBody("");

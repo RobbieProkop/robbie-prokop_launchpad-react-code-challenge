@@ -145,8 +145,8 @@ export const postSlice = createSlice({
         const { id } = action.payload;
         console.log("edited id", id);
         const posts = state.posts.filter((post) => post.id !== id);
-        console.log("posts adter edit", posts);
-        state.posts = [...posts, action.payload];
+        console.log("posts adter edit", action.payload);
+        state.posts.push(action.payload);
       })
       .addCase(editPost.rejected, (state, action) => {
         state.isLoading = false;
