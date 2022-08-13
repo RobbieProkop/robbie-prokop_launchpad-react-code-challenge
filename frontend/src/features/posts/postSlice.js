@@ -59,7 +59,6 @@ export const editPost = createAsyncThunk(
   async (postData, thunkAPI) => {
     const { id } = postData;
     try {
-      console.log("id Edit", id);
       const res = await postService.editPost(id, postData);
       console.log("edit is working", res);
       return res;
@@ -108,7 +107,6 @@ export const postSlice = createSlice({
       .addCase(getPosts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        console.log("get posts action", action.payload);
         state.posts = action.payload;
       })
       .addCase(getPosts.rejected, (state, action) => {
@@ -122,7 +120,6 @@ export const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        console.log("createPost payload", action.payload);
         state.posts.push(action.payload);
       })
       .addCase(createPost.rejected, (state, action) => {
