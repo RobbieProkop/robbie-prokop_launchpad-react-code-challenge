@@ -12,6 +12,8 @@ const Universities = () => {
     (state) => state.universities
   );
 
+  const [name, setName] = useState("");
+
   let id = 0;
 
   // const addId = (id = 0) => {
@@ -49,55 +51,39 @@ const Universities = () => {
           <section className="heading">
             <h1>Universities in {}</h1>
             {/* search for unis */}
-            {/* <div className="search">
+            <div className="search">
               <div className="column">
-                <label htmlFor="postSearch">Search by User</label>
+                <label htmlFor="uniSearch">Search by Name</label>
                 <input
-                  type="number"
-                  name="user"
-                  id="text"
-                  value={userId}
+                  type="text"
+                  name="uni"
+                  id="uniName"
+                  value={name}
                   placeholder="User:"
-                  onChange={(e) => setUserId(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
-              <div className="column">
-                <label htmlFor="postSearch">Search by ID</label>
-                <input
-                  type="number"
-                  name="searchId"
-                  id="text"
-                  value={searchId}
-                  placeholder="ID:"
-                  onChange={(e) => setSearchId(e.target.value)}
-                />
-              </div>
-            </div> */}
+            </div>
           </section>
 
           <section className="uni-content">
             {unis.length > 0 ? (
-              // <div className="unis">
               <>
-                {unis.map((uni) => (
-                  // console.log("mapped id", id),
-                  <div key={id}>
-                    <UniItem uni={uni} id={id++} />
-                  </div>
-                ))}
-                {/* {unis
-                .filter((uni) => {
-                  if (searchId === "" && userId === "") {
-                    return post;
-                  } else if (post.id === Number(searchId)) {
-                    return post;
-                  } else if (post.userId === Number(userId)) {
-                    return post;
-                  }
-                })
-                .map((post) => (
-                  <PostItem key={post.id} post={post} />
-                ))} */}
+                {unis
+                  .filter((uni) => {
+                    if (name === "") {
+                      return uni;
+                    } else if (
+                      uni.name.toLowerCase().includes(name.toLowerCase())
+                    ) {
+                      return uni;
+                    }
+                  })
+                  .map((uni) => (
+                    <div key={id}>
+                      <UniItem uni={uni} id={id++} />
+                    </div>
+                  ))}
               </>
             ) : (
               <h3>No posts to show</h3>
