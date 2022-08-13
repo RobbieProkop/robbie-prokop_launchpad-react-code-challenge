@@ -15,6 +15,9 @@ const Universities = () => {
   const [country, setCountry] = useState(currentCountry);
 
   let id = 0;
+  const onChange = (e) => {
+    setCountry(e.target.value);
+  };
 
   useEffect(() => {
     if (isError) {
@@ -22,9 +25,10 @@ const Universities = () => {
       <ToastContainer />;
       console.log(message);
     }
+    console.log(country);
     dispatch(getCountries());
     dispatch(getUnis(country));
-  }, [dispatch, setCountry, isError, message]);
+  }, [dispatch, country, isError, message]);
 
   return (
     <>
@@ -49,11 +53,7 @@ const Universities = () => {
               </div>
               <div className="column">
                 <label htmlFor="countrySearch">Search by Country</label>
-                <select
-                  id="countryName"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                >
+                <select id="countryName" value={country} onChange={onChange}>
                   {countries.map((el) => {
                     return (
                       <option value={el.name} key={el.name}>
