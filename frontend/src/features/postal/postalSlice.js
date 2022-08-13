@@ -10,11 +10,11 @@ const initialState = {
   message: "",
 };
 
-export const getAllPostal = createAsyncThunk(
+export const getPostalInfo = createAsyncThunk(
   "postal/getAll",
   async (postalCode, thunkAPI) => {
     try {
-      return await postalService.getAllPostal(postalCode);
+      return await postalService.getPostalInfo(postalCode);
     } catch (error) {
       const message =
         error.response.data.message || error.message || error.toString();
@@ -29,18 +29,18 @@ export const postalSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllPostal.pending, (state) => {
+      .addCase(getPostalInfo.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getAllPostal.fulfilled, (state, action) => {
+      .addCase(getPostalInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
         state.postals = action.payload;
       })
-      .addCase(getAllPostal.rejected, (state, action) => {
+      .addCase(getPostalInfo.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        console.log("getAllPostal error", action.payload);
+        console.log("getPostalInfo error", action.payload);
         state.message = action.payload;
       });
   },
