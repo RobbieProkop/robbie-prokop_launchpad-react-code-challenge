@@ -24,7 +24,7 @@ const Universities = () => {
     }
     dispatch(getCountries());
     dispatch(getUnis(country));
-  }, [dispatch, isError, message]);
+  }, [dispatch, setCountry, isError, message]);
 
   return (
     <>
@@ -49,19 +49,14 @@ const Universities = () => {
               </div>
               <div className="column">
                 <label htmlFor="countrySearch">Search by Country</label>
-                <select id="countryName" value={country}>
+                <select
+                  id="countryName"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                >
                   {countries.map((el) => {
                     return (
-                      <option
-                        value={el.name}
-                        key={el.name}
-                        // type="text"
-                        // name="uni"
-                        // id="countryName"
-                        // value={country}
-                        // placeholder="User:"
-                        onChange={(e) => setCountry(e.target.value)}
-                      >
+                      <option value={el.name} key={el.name}>
                         {el.name}
                       </option>
                     );
