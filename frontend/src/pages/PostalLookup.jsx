@@ -19,14 +19,14 @@ const PostalLookup = () => {
 
   let placeName = "";
   let stateAbb = "";
-  // for (const place in places[0]) {
-  //   if (place === "place name") {
-  //     placeName = places[0][place];
-  //   }
-  //   if (place === "state abbreviation") {
-  //     stateAbb = places[0][place];
-  //   }
-  // }
+  for (const place in places[0]) {
+    if (place === "place name") {
+      placeName = places[0][place];
+    }
+    if (place === "state abbreviation") {
+      stateAbb = places[0][place];
+    }
+  }
 
   useEffect(() => {
     if (isError) {
@@ -53,16 +53,25 @@ const PostalLookup = () => {
             <div className="search postal">
               <div className="column">
                 <label htmlFor="postal-search">
-                  Enter Your Zip Code ( from : 00210 to 99950 )
+                  Enter Your Zip Code ( from 00210 to 99950 )
                 </label>
-                <input
-                  type="text"
+                {/* <select value={country} onChange={onChange}>
+                  {countries.map((el) => {
+                    return (
+                      <option value={el.name} key={el.name}>
+                        {el.name}
+                      </option>
+                    );
+                  })}
+                </select> */}
+                {/* <input
+                  type="number"
                   name="postal"
                   id="postalNum"
                   value={postal}
                   placeholder="12345"
                   onChange={(e) => setPostal(e.target.value)}
-                />
+                /> */}
               </div>
             </div>
           </section>
@@ -73,14 +82,18 @@ const PostalLookup = () => {
                 <h3>Could not locate Zip Code</h3>
               ) : (
                 <div className="posts">
-                  <div className="post">
-                    <h4>Country: {country}</h4>
-                    <h4>State: {places[0].state}</h4>
+                  <div className="post postal-info">
+                    <div>
+                      <h4>Country: {country}</h4>
+                      <h4>State: {places[0].state}</h4>
+                    </div>
                     <h3>
-                      City/Town: {placeName}, {stateAbb}
+                      City / Town: {placeName}, {stateAbb}
                     </h3>
-                    <h4>Longitude: {places[0].longitude}</h4>
-                    <h4>Latitude: {places[0].latitude}</h4>
+                    <div>
+                      <h4>Longitude: {places[0].longitude}</h4>
+                      <h4>Latitude: {places[0].latitude}</h4>
+                    </div>
                   </div>
                 </div>
               ))}

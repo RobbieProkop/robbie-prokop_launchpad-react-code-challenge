@@ -20,7 +20,7 @@ body,
 #root {
   font-family: "Poppins", sans-serif;
   // add this if i want the footer to remain on the bottom
-  // height: 100vh;
+  height: 100vh;
   background-color: $black;
   background-image: url("../public/darkWoodTexture.png");
   color: $white;
@@ -268,6 +268,13 @@ p {
         div {
           @include flex-between();
           padding-top: 5px;
+        }
+      }
+      .postal-info {
+        @include flex-between();
+        padding: 1rem;
+        div {
+          flex-direction: column;
         }
       }
     }
