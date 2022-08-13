@@ -23,11 +23,13 @@ const PostalLookup = () => {
             currently limited to the USA  */}
             <div className="search postal">
               <div className="column">
-                <label htmlFor="postal-search">Enter Your Zip Code</label>
+                <label htmlFor="postal-search">
+                  Enter Your Zip Code ( from : 00210 to 99950 )
+                </label>
                 <input
                   type="text"
-                  name="uni"
-                  id="uniName"
+                  name="postal"
+                  id="postalNum"
                   value={postal}
                   placeholder="12345"
                   onChange={(e) => setPostal(e.target.value)}
