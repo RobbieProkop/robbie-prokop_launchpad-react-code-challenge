@@ -13,6 +13,7 @@ const Universities = () => {
   );
 
   const [name, setName] = useState("");
+  const [country, setCountry] = useState("");
 
   let id = 0;
 
@@ -59,9 +60,20 @@ const Universities = () => {
                   name="uni"
                   id="uniName"
                   value={name}
-                  placeholder="User:"
+                  placeholder="University:"
                   onChange={(e) => setName(e.target.value)}
                 />
+              </div>
+              <div className="column">
+                <label htmlFor="countrySearch">Search by Country</label>
+                <option
+                // type="text"
+                // name="uni"
+                // id="countryName"
+                // value={country}
+                // placeholder="User:"
+                // onChange={(e) => setCountry(e.target.value)}
+                ></option>
               </div>
             </div>
           </section>
