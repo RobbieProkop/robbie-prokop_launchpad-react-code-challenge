@@ -24,18 +24,33 @@ const Universities = () => {
 
   //for scroll to top button
 
-  const scroll = document.getElementById("scroll");
+  const scrollButton = document.getElementById("scroll");
+
   const scrollFunc = () => {
     let y = window.scrollY;
 
     if (y > 0) {
-      scroll.className = "return-to-top show";
+      scrollButton.className = "return-to-top show";
     } else {
-      scroll.className = "return-to-top hide";
+      scrollButton.className = "return-to-top hide";
     }
   };
 
   window.addEventListener("scroll", scrollFunc);
+
+  const scrollToTop = () => {
+    const top = document.documentElement.scrollTop || document.body.scrollTop;
+
+    if (top > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, top - top / 20);
+    }
+  };
+
+  const scroll = (e) => {
+    e.preventDefault;
+    scrollToTop();
+  };
 
   const onChange = (e) => {
     setCountry(e.target.value);
@@ -115,7 +130,7 @@ const Universities = () => {
           <div id="scroll">
             {/* <div className="return-to-to "> */}
             <a href="#">
-              <button className="btn btn-edit">
+              <button className="btn btn-edit" onClick={scroll}>
                 <FaAngleDoubleUp />
               </button>
             </a>
