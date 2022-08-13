@@ -2,7 +2,10 @@ import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPostalInfo } from "../features/postal/postalSlice";
+import {
+  getPostalInfo,
+  setCurrentPostal,
+} from "../features/postal/postalSlice";
 
 const PostalLookup = () => {
   const dispatch = useDispatch();
@@ -33,6 +36,7 @@ const PostalLookup = () => {
     }
     if (postal.length === 5) {
       dispatch(getPostalInfo(postal));
+      dispatch(setCurrentPostal(postal));
     }
   }, [dispatch, postal]);
 

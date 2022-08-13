@@ -26,11 +26,16 @@ export const getPostalInfo = createAsyncThunk(
 export const postalSlice = createSlice({
   name: "postal",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPostal(state, action) {
+      state.current = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getPostalInfo.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getPostalInfo.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -46,5 +51,7 @@ export const postalSlice = createSlice({
       });
   },
 });
+
+export const { setCurrentPostal } = postalSlice.actions;
 
 export default postalSlice.reducer;
