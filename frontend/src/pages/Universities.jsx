@@ -8,12 +8,11 @@ import UniItem from "../components/UniItem";
 const Universities = () => {
   const dispatch = useDispatch();
 
-  const { unis, isLoading, isError, message } = useSelector(
-    (state) => state.universities
-  );
+  const { unis, countries, currentCountry, isLoading, isError, message } =
+    useSelector((state) => state.universities);
 
   const [name, setName] = useState("");
-  const [country, setCountry] = useState("Canada");
+  const [country, setCountry] = useState(currentCountry);
 
   let id = 0;
 
@@ -34,7 +33,7 @@ const Universities = () => {
       ) : (
         <div className="container">
           <section className="heading">
-            <h1>Universities in {}</h1>
+            <h1>Universities in {country}</h1>
             {/* search for unis */}
             <div className="search">
               <div className="column">

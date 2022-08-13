@@ -68,6 +68,7 @@ export const uniSlice = createSlice({
       .addCase(getCountries.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
+        // state.currentCountry =
         console.log("getCountries action", action.payload);
         state.countries = action.payload.data;
       })
