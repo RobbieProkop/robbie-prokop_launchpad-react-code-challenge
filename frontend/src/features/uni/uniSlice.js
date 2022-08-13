@@ -68,10 +68,16 @@ export const uniSlice = createSlice({
       .addCase(getCountries.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        // const sorted = ac;
+        const sorted = action.payload.data?.sort((a, b) => {
+          let na = a.name.toLowerCase();
+          let nb = b.name.toLowerCase();
+          if (na < nb) return -1;
+          if (na > nb) return 1;
+          return 0;
+        });
         // state.currentCountry =
         console.log("getCountries action", action.payload);
-        state.countries = action.payload.data?.sort();
+        state.countries = sorted;
       })
       .addCase(getCountries.rejected, (state, action) => {
         state.isLoading = false;
