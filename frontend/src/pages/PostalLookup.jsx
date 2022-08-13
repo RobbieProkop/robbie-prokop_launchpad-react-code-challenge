@@ -15,12 +15,15 @@ const PostalLookup = () => {
   const [postal, setPostal] = useState("00210");
 
   let placeName = "";
-  for (const place in places[0]) {
-    if (place === "place name") {
-      placeName = places[0][place];
-    }
-  }
-  console.log(placeName);
+  let stateAbb = "";
+  // for (const place in places[0]) {
+  //   if (place === "place name") {
+  //     placeName = places[0][place];
+  //   }
+  //   if (place === "state abbreviation") {
+  //     stateAbb = places[0][place];
+  //   }
+  // }
 
   useEffect(() => {
     if (isError) {
@@ -28,8 +31,9 @@ const PostalLookup = () => {
       <ToastContainer />;
       console.log(message);
     }
-
-    dispatch(getPostalInfo(postal));
+    if (postal.length === 5) {
+      dispatch(getPostalInfo(postal));
+    }
   }, [dispatch, postal]);
 
   return (
@@ -60,17 +64,22 @@ const PostalLookup = () => {
           </section>
 
           <section className="content">
-            {places && (
-              <div className="posts">
-                <div className="post">
-                  <h4>Country: {country}</h4>
-                  <h4>State: {places[0].state}</h4>
-                  <h3>City/Town: {placeName}</h3>
-                  <h4>Longitude: {places[0].longitude}</h4>
-                  <h4>Latitude: {places[0].latitude}</h4>
+            {places &&
+              (isError ? (
+                <h3>Could not locate Zip Code</h3>
+              ) : (
+                <div className="posts">
+                  <div className="post">
+                    <h4>Country: {country}</h4>
+                    <h4>State: {places[0].state}</h4>
+                    <h3>
+                      City/Town: {placeName}, {stateAbb}
+                    </h3>
+                    <h4>Longitude: {places[0].longitude}</h4>
+                    <h4>Latitude: {places[0].latitude}</h4>
+                  </div>
                 </div>
-              </div>
-            )}
+              ))}
           </section>
         </div>
       )}

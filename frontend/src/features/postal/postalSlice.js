@@ -39,6 +39,7 @@ export const postalSlice = createSlice({
       })
       .addCase(getPostalInfo.rejected, (state, action) => {
         state.isLoading = false;
+        state.isSuccessful = false;
         state.isError = true;
         console.log("getPostalInfo error", action.payload);
         state.message = action.payload;
