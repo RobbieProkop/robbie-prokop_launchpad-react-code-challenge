@@ -43,7 +43,9 @@ export const uniSlice = createSlice({
   name: "uni",
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    setCurrentCountry(state, action) {
+      state.currentCountry = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -60,7 +62,7 @@ export const uniSlice = createSlice({
           if (na > nb) return 1;
           return 0;
         });
-        console.log("get unis action", action.payload);
+        console.log("getUnis action", action.payload);
         state.unis = sorted;
       })
       .addCase(getUnis.rejected, (state, action) => {
@@ -82,7 +84,6 @@ export const uniSlice = createSlice({
           if (na > nb) return 1;
           return 0;
         });
-        // state.currentCountry =
         console.log("getCountries action", action.payload);
         state.countries = sorted;
       })
@@ -95,5 +96,5 @@ export const uniSlice = createSlice({
   },
 });
 
-export const { reset } = uniSlice.actions;
+export const { setCurrentCountry } = uniSlice.actions;
 export default uniSlice.reducer;

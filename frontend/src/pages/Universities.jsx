@@ -2,7 +2,11 @@ import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, getUnis } from "../features/uni/uniSlice";
+import {
+  getCountries,
+  getUnis,
+  setCurrentCountry,
+} from "../features/uni/uniSlice";
 import UniItem from "../components/UniItem";
 
 const Universities = () => {
@@ -27,6 +31,7 @@ const Universities = () => {
     }
     dispatch(getCountries());
     dispatch(getUnis(country));
+    dispatch(setCurrentCountry(country));
   }, [dispatch, country, isError, message]);
 
   return (
