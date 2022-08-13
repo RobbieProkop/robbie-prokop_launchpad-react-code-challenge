@@ -9,15 +9,12 @@ const COUNTRY_API_URL =
 //Get all universities
 const getUnis = async (country) => {
   const { data } = await axios.get(UNI_API_URL + country);
-  // const { data } = await axios.get(UNI_API_URL);
-  console.log("getUnis data", data);
   return data;
 };
 
 //Get all Countries
 const getCountries = async () => {
   const { data } = await axios.get(COUNTRY_API_URL);
-  console.log("getCountries data", data);
   return data;
 };
 

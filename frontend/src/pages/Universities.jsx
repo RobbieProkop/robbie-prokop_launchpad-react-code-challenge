@@ -25,7 +25,6 @@ const Universities = () => {
       <ToastContainer />;
       console.log(message);
     }
-    console.log(country);
     dispatch(getCountries());
     dispatch(getUnis(country));
   }, [dispatch, country, isError, message]);
