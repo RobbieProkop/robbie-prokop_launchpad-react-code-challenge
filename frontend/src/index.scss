@@ -281,11 +281,8 @@ p {
       max-width: 100%;
       height: 250px;
 
-      // &.span {
-      //   &:nth-of-type(1) {
-      //     grid-column: 1 /5;
-      //   }
-      // }
+      // this styling isn ot ideal for lage data sets. using nth-child doesn't work as they conflict. Maybe i could use conditional statement and mixins to make this job easier. For now, I just hardcoded some spans
+
       &:nth-of-type(1) {
         grid-column: 1 /5;
       }
@@ -303,6 +300,48 @@ p {
       }
       &:nth-of-type(12) {
         grid-column: 3 /5;
+      }
+      &:nth-of-type(15) {
+        grid-column: 3 /5;
+      }
+      &:nth-of-type(16) {
+        grid-column: 1 / 5;
+      }
+      &:nth-of-type(19) {
+        grid-column: 3 / 5;
+      }
+      &:nth-of-type(22) {
+        grid-column: 3 / 5;
+      }
+      &:nth-of-type(24) {
+        grid-column: 2 /4;
+      }
+      &:nth-of-type(26) {
+        grid-column: 1 /3;
+      }
+      &:nth-of-type(27) {
+        grid-column: 3 /5;
+      }
+      &:nth-of-type(30) {
+        grid-column: 3 /5;
+      }
+      &:nth-of-type(31) {
+        grid-column: 1 /5;
+      }
+      &:nth-of-type(32) {
+        grid-column: 1 /3;
+      }
+      &:nth-of-type(35) {
+        grid-column: 1 /3;
+      }
+      &:nth-of-type(40) {
+        grid-column: 3 /5;
+      }
+      &:nth-of-type(42) {
+        grid-column: 2 /4;
+      }
+      &:nth-of-type(52) {
+        grid-column: 1 /5;
       }
     }
     a {
@@ -324,6 +363,8 @@ p {
         width: 100%;
         height: 250px;
       }
+
+      // ideally bg1 and bg2 would not alternate every 2. Need to think of a better way to add the class (currently beign mapped in unitItem
 
       &.bg1 {
         background: url("../public/coffee-writing.jpeg");
