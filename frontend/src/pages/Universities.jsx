@@ -9,6 +9,7 @@ import {
 } from "../features/uni/uniSlice";
 import UniItem from "../components/UniItem";
 import { FaAngleDoubleUp } from "react-icons/fa";
+import ReturnToTop from "../components/ReturnToTop";
 
 const Universities = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,22 @@ const Universities = () => {
   const [country, setCountry] = useState(currentCountry);
 
   let id = 0;
+
+  //for scroll to top button
+
+  const scroll = document.getElementById("scroll");
+  const scrollFunc = () => {
+    let y = window.scrollY;
+
+    if (y > 0) {
+      scroll.className = "return-to-top show";
+    } else {
+      scroll.className = "return-to-top hide";
+    }
+  };
+
+  window.addEventListener("scroll", scrollFunc);
+
   const onChange = (e) => {
     setCountry(e.target.value);
   };
@@ -89,18 +106,20 @@ const Universities = () => {
                       <UniItem uni={uni} id={id++} />
                     </div>
                   ))}
-                <div className="return-to-top">
-                  <a href="#">
-                    <button>
-                      <FaAngleDoubleUp />
-                    </button>
-                  </a>
-                </div>
               </>
             ) : (
               <h3>No Universities to show</h3>
             )}
           </section>
+          {/* <ReturnToTop y={y} /> */}
+          <div id="scroll">
+            {/* <div className="return-to-to "> */}
+            <a href="#">
+              <button className="btn btn-edit">
+                <FaAngleDoubleUp />
+              </button>
+            </a>
+          </div>
         </div>
       )}
     </>
