@@ -2,37 +2,22 @@ import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUnis } from "../features/uni/uniSlice";
+import { getCountries, getUnis } from "../features/uni/uniSlice";
 import UniItem from "../components/UniItem";
 
 const Universities = () => {
   const dispatch = useDispatch();
 
-  const { unis, isLoading, isError, message } = useSelector(
-    (state) => state.universities
-  );
+  const { unis, countries, currentCountry, isLoading, isError, message } =
+    useSelector((state) => state.universities);
 
   const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState(currentCountry);
 
   let id = 0;
-
-  // const addId = (id = 0) => {
-  //   return function recur(obj) {
-  //     if ("name" in obj) {
-  //       obj.id = id++;
-  //     }
-  //     Object.keys(obj).forEach((el) => {
-  //       obj[el].forEach(recur);
-  //     });
-  //   };
-  // };
-
-  // const mapId = (arr) => {
-  //   arr.forEach(addId);
-  // };
-
-  // mapId(dispatch(getUnis()));
+  const onChange = (e) => {
+    setCountry(e.target.value);
+  };
 
   useEffect(() => {
     if (isError) {
@@ -40,8 +25,9 @@ const Universities = () => {
       <ToastContainer />;
       console.log(message);
     }
-    dispatch(getUnis());
-  }, [dispatch, isError, message]);
+    dispatch(getCountries());
+    dispatch(getUnis(country));
+  }, [dispatch, country, isError, message]);
 
   return (
     <>
@@ -50,7 +36,7 @@ const Universities = () => {
       ) : (
         <div className="container">
           <section className="heading">
-            <h1>Universities in {}</h1>
+            <h1>Universities in {country}</h1>
             {/* search for unis */}
             <div className="search">
               <div className="column">
@@ -66,14 +52,15 @@ const Universities = () => {
               </div>
               <div className="column">
                 <label htmlFor="countrySearch">Search by Country</label>
-                <option
-                // type="text"
-                // name="uni"
-                // id="countryName"
-                // value={country}
-                // placeholder="User:"
-                // onChange={(e) => setCountry(e.target.value)}
-                ></option>
+                <select id="countryName" value={country} onChange={onChange}>
+                  {countries.map((el) => {
+                    return (
+                      <option value={el.name} key={el.name}>
+                        {el.name}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </section>
@@ -98,7 +85,7 @@ const Universities = () => {
                   ))}
               </>
             ) : (
-              <h3>No posts to show</h3>
+              <h3>No Universities to show</h3>
             )}
             {/* <div className="bg1">
               <h2>Battery</h2>
