@@ -19,8 +19,8 @@ $hover: rgb(123, 195, 123);
 body,
 #root {
   font-family: "Poppins", sans-serif;
-  // add this if i want the footer to remain on the bottom
-  // height: 100vh;
+  // add heigh 100vh if i want the footer to remain on the bottom
+  height: 100vh;
   background-color: $black;
   background-image: url("../public/darkWoodTexture.png");
   color: $white;
@@ -181,6 +181,7 @@ p {
       .column {
         display: flex;
         flex-direction: column;
+        align-items: center;
 
         input,
         select {
@@ -190,9 +191,17 @@ p {
           margin-top: 5px;
           font-size: 1rem;
         }
-
         select {
           font-size: 0.8rem;
+        }
+      }
+    }
+    .postal {
+      margin-top: 1rem;
+      .column {
+        align-items: unset;
+        #postalNum {
+          max-width: 130px;
         }
       }
     }
@@ -264,6 +273,13 @@ p {
         div {
           @include flex-between();
           padding-top: 5px;
+        }
+      }
+      .postal-info {
+        @include flex-between();
+        padding: 1rem;
+        div {
+          flex-direction: column;
         }
       }
     }
