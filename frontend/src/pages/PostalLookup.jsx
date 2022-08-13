@@ -10,29 +10,18 @@ import {
 const PostalLookup = () => {
   const dispatch = useDispatch();
 
-  const { postals, current, isLoading, isError, message } = useSelector(
+  const { postals, isLoading, isError, message } = useSelector(
     (state) => state.postalInfo
   );
   const { places } = postals;
 
   const [postal, setPostal] = useState("00210");
   const [country, setCountry] = useState("United States");
-
-  let placeName = "";
-  let stateAbb = "";
-  for (const place in places[0]) {
-    if (place === "place name") {
-      placeName = places[0][place];
-    }
-    if (place === "state abbreviation") {
-      stateAbb = places[0][place];
-    }
-  }
+  // const [countryAbb, setCountryAbb] = useState("us");
 
   const onChange = (e) => {
     setCountry(e.target.value);
   };
-  console.log(country);
 
   useEffect(() => {
     if (isError) {
@@ -40,11 +29,30 @@ const PostalLookup = () => {
       <ToastContainer />;
       console.log(message);
     }
+
     if (postal.length === 5) {
       dispatch(getPostalInfo(postal));
       dispatch(setCurrentPostal(postals["country abbreviation"]));
     }
   }, [dispatch, postal]);
+
+  //grabbing information from the api results
+  let placeName = "";
+  let stateAbb = "";
+  if (places) {
+    // if (country === "Canada") return setCountryAbb("ca");
+    // if (country === "Germany") return setCountryAbb("de");
+    // if (country === "France") return setCountryAbb("fr");
+    // if (country === "United States") return setCountryAbb("us");
+    for (const place in places[0]) {
+      if (place === "place name") {
+        placeName = places[0][place];
+      }
+      if (place === "state abbreviation") {
+        stateAbb = places[0][place];
+      }
+    }
+  }
 
   return (
     <>
@@ -63,9 +71,9 @@ const PostalLookup = () => {
                     Enter Your Zip Code ( from 00210 to 99950 )
                   </label>
                 )}
-                {country === "Canada" && (
+                {/* {country === "Canada" && (
                   <label htmlFor="postal-search">
-                    Enter Your Postal Code ( first 3 )
+                    Enter Your Postal Code ( limit 3 )
                   </label>
                 )}
                 {country === "Germany" && (
@@ -77,7 +85,7 @@ const PostalLookup = () => {
                   <label htmlFor="postal-search">
                     Enter Your Zip Code ( from 01000 to 98799 )
                   </label>
-                )}
+                )} */}
                 <input
                   type="number"
                   name="postal"
@@ -93,7 +101,7 @@ const PostalLookup = () => {
                   <option value={"United States"} key={"United States"}>
                     United States
                   </option>
-                  <option value={"Canada"} key={"Canada"}>
+                  {/* <option value={"Canada"} key={"Canada"}>
                     Canada
                   </option>
                   <option value={"Germany"} key={"Germany"}>
@@ -101,7 +109,7 @@ const PostalLookup = () => {
                   </option>
                   <option value={"France"} key={"France"}>
                     France
-                  </option>
+                  </option> */}
                 </select>
               </div>
             </div>

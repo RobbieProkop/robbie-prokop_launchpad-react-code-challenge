@@ -3,7 +3,7 @@ import postalService from "./postalService";
 
 const initialState = {
   postals: [],
-  current: "",
+  currentCountry: "us",
   isError: false,
   isLoading: false,
   isSuccessful: false,
@@ -28,7 +28,7 @@ export const postalSlice = createSlice({
   initialState,
   reducers: {
     setCurrentPostal(state, action) {
-      state.current = action.payload;
+      state.currentCountry = action.payload;
     },
   },
   extraReducers: (builder) => {
