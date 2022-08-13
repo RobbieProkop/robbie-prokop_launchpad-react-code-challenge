@@ -191,15 +191,19 @@ p {
           margin-top: 5px;
           font-size: 1rem;
         }
-
         select {
           font-size: 0.8rem;
         }
       }
     }
-    // .postal {
-    //   @include flex-center();
-    // }
+    .postal {
+      .column {
+        align-items: unset;
+        #postalNum {
+          max-width: 130px;
+        }
+      }
+    }
   }
 
   //home page

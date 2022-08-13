@@ -42,7 +42,7 @@ const PostalLookup = () => {
     }
     if (postal.length === 5) {
       dispatch(getPostalInfo(postal));
-      dispatch(setCurrentPostal(postal));
+      dispatch(setCurrentPostal(postals["country abbreviation"]));
     }
   }, [dispatch, postal]);
 
@@ -58,9 +58,26 @@ const PostalLookup = () => {
             currently limited to the USA  */}
             <div className="search postal">
               <div className="column">
-                <label htmlFor="postal-search">
-                  Enter Your Zip Code ( from 00210 to 99950 )
-                </label>
+                {country === "United States" && (
+                  <label htmlFor="postal-search">
+                    Enter Your Zip Code ( from 00210 to 99950 )
+                  </label>
+                )}
+                {country === "Canada" && (
+                  <label htmlFor="postal-search">
+                    Enter Your Postal Code ( first 3 )
+                  </label>
+                )}
+                {country === "Germany" && (
+                  <label htmlFor="postal-search">
+                    Enter Your Zip Code ( from 01067 to 99998 )
+                  </label>
+                )}
+                {country === "France" && (
+                  <label htmlFor="postal-search">
+                    Enter Your Zip Code ( from 01000 to 98799 )
+                  </label>
+                )}
                 <input
                   type="number"
                   name="postal"
