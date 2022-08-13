@@ -6,7 +6,7 @@ $btn-edit: green;
 $btn-delete: red;
 $black: #333;
 $white: #fff;
-$grey: rgb(122, 122, 122);
+$grey: rgb(175, 175, 175);
 $hover: rgb(123, 195, 123);
 
 // reset
@@ -154,7 +154,7 @@ p {
       padding: 10px;
 
       &:hover {
-        color: $hover;
+        color: $grey;
       }
       svg {
         margin-right: 5px;
@@ -418,7 +418,7 @@ p {
 //footer
 .footer {
   @include flex-center();
-  background: $primaryColor;
+  background: $grey;
   color: $black;
   height: 70px;
   margin-top: 2rem;
