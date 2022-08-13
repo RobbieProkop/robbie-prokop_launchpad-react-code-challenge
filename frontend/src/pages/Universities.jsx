@@ -47,7 +47,7 @@ const Universities = () => {
       ) : (
         <div className="container">
           <section className="heading">
-            <h1>Universities in your country</h1>
+            <h1>Universities in {}</h1>
             {/* search for unis */}
             {/* <div className="search">
               <div className="column">
@@ -80,8 +80,9 @@ const Universities = () => {
               // <div className="unis">
               <>
                 {unis.map((uni) => (
-                  <div>
-                    <UniItem key={uni.name} uni={uni} id={id++} />
+                  // console.log("mapped id", id),
+                  <div key={id}>
+                    <UniItem uni={uni} id={id++} />
                   </div>
                 ))}
                 {/* {unis

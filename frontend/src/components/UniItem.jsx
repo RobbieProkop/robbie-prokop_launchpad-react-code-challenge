@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 
-const UniItem = ({ uni, id }) => {
+const UniItem = ({ uni, id, key }) => {
+  // console.log(key);
   return (
     <a
       href={`${uni.web_pages[0]}`}
