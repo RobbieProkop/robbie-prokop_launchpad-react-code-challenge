@@ -5,9 +5,11 @@ import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { getPosts, setToggleForm } from "../features/posts/postSlice";
+import { FaAngleDoubleUp } from "react-icons/fa";
 
 const Home = () => {
   const dispatch = useDispatch();
+
   const togglePostForm = useSelector((state) => state.posts.postForm);
   const { posts, isLoading, isError, message } = useSelector(
     (state) => state.posts
@@ -94,6 +96,13 @@ const Home = () => {
                   .map((post) => (
                     <PostItem key={post.id} post={post} />
                   ))}
+                <div className="return-to-top">
+                  <a href="#header">
+                    <button>
+                      <FaAngleDoubleUp />
+                    </button>
+                  </a>
+                </div>
               </div>
             ) : (
               <h3>No posts to show</h3>

@@ -92,7 +92,6 @@ p {
     background: $black;
     border: 1px solid $black;
     color: $white;
-    // transform: scale(1.1);
     transform: translate(0.2rem, -0.2rem);
   }
 }
@@ -136,7 +135,7 @@ p {
 }
 
 //navbar
-.header {
+#header {
   background-color: $primaryColor;
   height: 70px;
   padding: 2rem;
@@ -384,7 +383,7 @@ p {
         height: 250px;
       }
 
-      // ideally bg1 and bg2 would not alternate every 2. Need to think of a better way to add the class (currently beign mapped in unitItem
+      // ideally bg1 and bg2 would not alternate every 3. Need to think of a better way to add the class (currently beign mapped in unitItem
 
       &.bg1 {
         background: url("../public/coffee-writing.jpeg");

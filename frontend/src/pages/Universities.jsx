@@ -8,6 +8,7 @@ import {
   setCurrentCountry,
 } from "../features/uni/uniSlice";
 import UniItem from "../components/UniItem";
+import { FaAngleDoubleUp } from "react-icons/fa";
 
 const Universities = () => {
   const dispatch = useDispatch();
@@ -84,73 +85,21 @@ const Universities = () => {
                     }
                   })
                   .map((uni) => (
-                    <div
-                      key={id}
-                      // className={uni.name.length >= 28 ? "span" : ""}
-                    >
+                    <div key={id}>
                       <UniItem uni={uni} id={id++} />
                     </div>
                   ))}
+                <div className="return-to-top">
+                  <a href="#">
+                    <button>
+                      <FaAngleDoubleUp />
+                    </button>
+                  </a>
+                </div>
               </>
             ) : (
               <h3>No Universities to show</h3>
             )}
-            {/* <div className="bg1">
-              <h2>Battery</h2>
-              <p>Respiration</p>
-            </div>
-            <div className="bg1">
-              <h2>Running</h2>
-              <p>Miles</p>
-            </div>
-            <div className="bg1">
-              <h2>36 &deg;</h2>
-              <p>Temperature</p>
-            </div>
-            <div className="bg2">
-              <h2>Bed</h2>
-              <p>Sleep Keep</p>
-            </div>
-            <div className="bg1">
-              <h2>
-                98 <span>bpm</span>
-              </h2>
-              <p>Heart Rate</p>
-            </div>
-            <div className="bg1">
-              <h2>
-                170 <span>lbs</span>
-              </h2>
-              <p>Weight</p>
-            </div>
-            <div className="bg2">
-              <h2>
-                28 <span>%</span>
-              </h2>
-              <p>Fat Percentage</p>
-            </div>
-            <div className="bg1">
-              <h2>
-                118 <span>mgdl</span>
-              </h2>
-              <p>Blood Glucose</p>
-            </div>
-            <div className="bg2">
-              <h2>
-                680 <span>kcal</span>
-              </h2>
-              <p>AVG Consumption</p>
-            </div>
-            <div className="bg2">
-              <h2>Dumbell</h2>
-              <p>Workouts</p>
-            </div>
-            <div className="bg1">
-              <h2>
-                85 <span>%</span>
-              </h2>
-              <p>Body Hydration</p>
-            </div> */}
           </section>
         </div>
       )}
