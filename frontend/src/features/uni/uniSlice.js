@@ -53,8 +53,15 @@ export const uniSlice = createSlice({
       .addCase(getUnis.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
+        const sorted = action.payload?.sort((a, b) => {
+          let na = a.name.toLowerCase();
+          let nb = b.name.toLowerCase();
+          if (na < nb) return -1;
+          if (na > nb) return 1;
+          return 0;
+        });
         console.log("get unis action", action.payload);
-        state.unis = action.payload;
+        state.unis = sorted;
       })
       .addCase(getUnis.rejected, (state, action) => {
         state.isLoading = false;

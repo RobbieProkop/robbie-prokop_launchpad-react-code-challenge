@@ -79,7 +79,10 @@ const Universities = () => {
                     }
                   })
                   .map((uni) => (
-                    <div key={id}>
+                    <div
+                      key={id}
+                      // className={uni.name.length >= 28 ? "span" : ""}
+                    >
                       <UniItem uni={uni} id={id++} />
                     </div>
                   ))}
