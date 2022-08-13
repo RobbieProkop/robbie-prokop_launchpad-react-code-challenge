@@ -2,7 +2,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUnis } from "../features/uni/uniSlice";
+import { getCountries, getUnis } from "../features/uni/uniSlice";
 import UniItem from "../components/UniItem";
 
 const Universities = () => {
@@ -13,26 +13,9 @@ const Universities = () => {
   );
 
   const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("Canada");
 
   let id = 0;
-
-  // const addId = (id = 0) => {
-  //   return function recur(obj) {
-  //     if ("name" in obj) {
-  //       obj.id = id++;
-  //     }
-  //     Object.keys(obj).forEach((el) => {
-  //       obj[el].forEach(recur);
-  //     });
-  //   };
-  // };
-
-  // const mapId = (arr) => {
-  //   arr.forEach(addId);
-  // };
-
-  // mapId(dispatch(getUnis()));
 
   useEffect(() => {
     if (isError) {
@@ -40,7 +23,8 @@ const Universities = () => {
       <ToastContainer />;
       console.log(message);
     }
-    dispatch(getUnis());
+    dispatch(getCountries());
+    dispatch(getUnis(country));
   }, [dispatch, isError, message]);
 
   return (
@@ -98,7 +82,7 @@ const Universities = () => {
                   ))}
               </>
             ) : (
-              <h3>No posts to show</h3>
+              <h3>No Universities to show</h3>
             )}
             {/* <div className="bg1">
               <h2>Battery</h2>
