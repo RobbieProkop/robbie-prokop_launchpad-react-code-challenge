@@ -49,14 +49,24 @@ const Universities = () => {
               </div>
               <div className="column">
                 <label htmlFor="countrySearch">Search by Country</label>
-                <option
-                // type="text"
-                // name="uni"
-                // id="countryName"
-                // value={country}
-                // placeholder="User:"
-                // onChange={(e) => setCountry(e.target.value)}
-                ></option>
+                <select id="countryName" value={country}>
+                  {countries.map((el) => {
+                    return (
+                      <option
+                        value={el.name}
+                        key={el.name}
+                        // type="text"
+                        // name="uni"
+                        // id="countryName"
+                        // value={country}
+                        // placeholder="User:"
+                        onChange={(e) => setCountry(e.target.value)}
+                      >
+                        {el.name}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </section>
