@@ -62,14 +62,16 @@ const PostalLookup = () => {
         <div className="container">
           <section className="heading">
             <h1>Local information in {country}</h1>
+            <p>Please note, not all zip codes are available</p>
             {/* search for Postal/Zip code
             currently limited to the USA  */}
             <div className="search postal">
               <div className="column">
                 {country === "United States" && (
-                  <label htmlFor="postal-search">
-                    Enter Your Zip Code ( from 00210 to 99950 )
-                  </label>
+                  <>
+                    <label htmlFor="postal-search">Enter Your Zip Code</label>
+                    <p>( from 00210 to 99950 )</p>
+                  </>
                 )}
                 {/* {country === "Canada" && (
                   <label htmlFor="postal-search">
