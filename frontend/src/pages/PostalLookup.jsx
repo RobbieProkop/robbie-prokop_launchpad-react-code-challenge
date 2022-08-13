@@ -13,9 +13,10 @@ const PostalLookup = () => {
   const { postals, current, isLoading, isError, message } = useSelector(
     (state) => state.postalInfo
   );
-  const { places, country } = postals;
+  const { places } = postals;
 
   const [postal, setPostal] = useState("00210");
+  const [country, setCountry] = useState("United States");
 
   let placeName = "";
   let stateAbb = "";
@@ -27,6 +28,11 @@ const PostalLookup = () => {
       stateAbb = places[0][place];
     }
   }
+
+  const onChange = (e) => {
+    setCountry(e.target.value);
+  };
+  console.log(country);
 
   useEffect(() => {
     if (isError) {
@@ -47,7 +53,7 @@ const PostalLookup = () => {
       ) : (
         <div className="container">
           <section className="heading">
-            <h1>Local information based on Zip Code</h1>
+            <h1>Local information in {country}</h1>
             {/* search for Postal/Zip code
             currently limited to the USA  */}
             <div className="search postal">
@@ -55,23 +61,31 @@ const PostalLookup = () => {
                 <label htmlFor="postal-search">
                   Enter Your Zip Code ( from 00210 to 99950 )
                 </label>
-                {/* <select value={country} onChange={onChange}>
-                  {countries.map((el) => {
-                    return (
-                      <option value={el.name} key={el.name}>
-                        {el.name}
-                      </option>
-                    );
-                  })}
-                </select> */}
-                {/* <input
+                <input
                   type="number"
                   name="postal"
                   id="postalNum"
                   value={postal}
                   placeholder="12345"
                   onChange={(e) => setPostal(e.target.value)}
-                /> */}
+                />
+              </div>
+              <div className="column">
+                <label htmlFor="postal-search">Select a country</label>
+                <select value={country} onChange={onChange}>
+                  <option value={"United States"} key={"United States"}>
+                    United States
+                  </option>
+                  <option value={"Canada"} key={"Canada"}>
+                    Canada
+                  </option>
+                  <option value={"Germany"} key={"Germany"}>
+                    Germany
+                  </option>
+                  <option value={"France"} key={"France"}>
+                    France
+                  </option>
+                </select>
               </div>
             </div>
           </section>

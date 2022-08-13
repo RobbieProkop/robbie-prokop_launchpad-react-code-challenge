@@ -19,7 +19,7 @@ $hover: rgb(123, 195, 123);
 body,
 #root {
   font-family: "Poppins", sans-serif;
-  // add this if i want the footer to remain on the bottom
+  // add heigh 100vh if i want the footer to remain on the bottom
   height: 100vh;
   background-color: $black;
   background-image: url("../public/darkWoodTexture.png");
@@ -197,9 +197,9 @@ p {
         }
       }
     }
-    .postal {
-      @include flex-center();
-    }
+    // .postal {
+    //   @include flex-center();
+    // }
   }
 
   //home page
