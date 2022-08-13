@@ -2,14 +2,25 @@ import { toast, ToastContainer } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllPostal } from "../features/postal/postalSlice";
 
 const PostalLookup = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, isError, message } = useSelector(
-    (state) => state.universities
+  const { postals, current, isLoading, isError, message } = useSelector(
+    (state) => state.postalInfo
   );
-  const [postal, setPostal] = useState("");
+  const [postal, setPostal] = useState("00210");
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+      <ToastContainer />;
+      console.log(message);
+    }
+
+    dispatch(getAllPostal(postal));
+  }, [dispatch, postal]);
 
   return (
     <>

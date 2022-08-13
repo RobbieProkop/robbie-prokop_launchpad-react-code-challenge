@@ -12,9 +12,9 @@ const initialState = {
 
 export const getAllPostal = createAsyncThunk(
   "postal/getAll",
-  async (_, thunkAPI) => {
+  async (postalCode, thunkAPI) => {
     try {
-      return await postalService.getAllPostal();
+      return await postalService.getAllPostal(postalCode);
     } catch (error) {
       const message =
         error.response.data.message || error.message || error.toString();
