@@ -10,26 +10,28 @@ const Header = () => {
   return (
     <>
       <header className="header">
-        <div className="logo">
-          <Link to="/">Launchpad Code Challenge</Link>
+        <div className="width-container">
+          <div className="logo">
+            <Link to="/">Launchpad Code Challenge</Link>
+          </div>
+          <ul className="header-link">
+            <li className="icon">
+              <Link to="/">
+                <FaHome /> Home
+              </Link>
+            </li>
+            <li className="icon">
+              <Link to="/universities">
+                <FaUniversity /> Find Universities
+              </Link>
+            </li>
+            <li>
+              <Link to="/postal">
+                <FaSearchLocation /> Postal Search
+              </Link>
+            </li>
+          </ul>
         </div>
-        <ul className="header-link">
-          <li className="icon">
-            <Link to="/">
-              <FaHome /> Home
-            </Link>
-          </li>
-          <li className="icon">
-            <Link to="/universities">
-              <FaUniversity /> Find Universities
-            </Link>
-          </li>
-          <li>
-            <Link to="/postal">
-              <FaSearchLocation /> Postal Search
-            </Link>
-          </li>
-        </ul>
       </header>
     </>
   );

@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ErrorPage from "./pages/ErrorPage";
 import EditPostForm from "./pages/EditPostForm";
-import SinglePost from "./pages/SinglePost";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,7 +16,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/posts/:postId" element={<SinglePost />} /> */}
           <Route path="/:postId" element={<EditPostForm />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/postal" element={<PostalLookup />} />

@@ -1,24 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deletePost, editPost } from "../features/posts/postSlice";
+import { deletePost } from "../features/posts/postSlice";
 
 const PostItem = ({ post }) => {
   const dispatch = useDispatch();
-  const postForm = useSelector((state) => state.posts.postForm);
-  // const editHandler = () => {
-  //   // dispatch(editPost(post.id));
-  // };
 
   return (
     <div className="post">
       <div>
         <h4>User: {post.userId}</h4>
         <div>
-          <Link
-            to={`/${post.id}`}
-            // onClick={editHandler}
-            className="btn btn-edit"
-          >
+          <Link to={`/${post.id}`} className="btn btn-edit">
             Edit
           </Link>
           <button
