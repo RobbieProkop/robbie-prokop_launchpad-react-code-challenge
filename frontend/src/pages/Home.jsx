@@ -5,7 +5,7 @@ import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { getPosts, setToggleForm } from "../features/posts/postSlice";
-import { FaAngleDoubleUp } from "react-icons/fa";
+import { FaSearchLocation } from "react-icons/fa";
 import ReturnToTop from "../components/ReturnToTop";
 
 const Home = () => {
@@ -40,6 +40,25 @@ const Home = () => {
     // return () => dispatch(reset());
   }, [dispatch, isError, message]);
 
+  // for user search results
+  let users = [];
+  posts.map((post) => {
+    if (!users.includes(Number(post.userId))) {
+      users.push(post.userId);
+    } else {
+      return users;
+    }
+  });
+  console.log(users);
+
+  // for id search results
+  let ids = [];
+  posts.map((post) => {
+    if (!ids.includes(Number(post.id))) {
+      ids.push(post.id);
+    }
+  });
+
   return (
     <>
       {isLoading ? (
@@ -57,7 +76,7 @@ const Home = () => {
               <div className="column">
                 <label htmlFor="postSearch">Search by User</label>
                 <input
-                  type="number"
+                  type="text"
                   name="user"
                   id="text"
                   value={userId}
@@ -65,7 +84,19 @@ const Home = () => {
                   onChange={(e) => setUserId(e.target.value)}
                   disabled={searchId}
                 />
+                <div className="data-result">
+                  {users
+                    // .filter((post) => {
+                    //   if (post.userId === Number(userId)) {
+                    //     return post;
+                    //   }
+                    // })
+                    .map((user) => (
+                      <div key={user}>{user}</div>
+                    ))}
+                </div>
               </div>
+
               <div className="column">
                 <label htmlFor="postSearch">Search by ID</label>
                 <input
@@ -77,6 +108,17 @@ const Home = () => {
                   onChange={(e) => setSearchId(e.target.value)}
                   disabled={userId}
                 />
+                <div className="data-result">
+                  {ids
+                    // .filter((post) => {
+                    //   if (post.userId === Number(userId)) {
+                    //     return post;
+                    //   }
+                    // })
+                    .map((id) => (
+                      <div key={id}>{id}</div>
+                    ))}
+                </div>
               </div>
             </div>
           </section>
