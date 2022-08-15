@@ -454,12 +454,10 @@ p {
 .footer {
   @include flex-center();
   background: $grey;
-  position: fixed;
   width: 100%;
   color: $black;
   height: 70px;
   margin-top: 2rem;
-  bottom: 0;
 }
 
 @import "mobile";
