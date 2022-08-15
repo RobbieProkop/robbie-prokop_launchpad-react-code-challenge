@@ -5,7 +5,6 @@ import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { getPosts, setToggleForm } from "../features/posts/postSlice";
-import { FaAngleDoubleUp } from "react-icons/fa";
 import ReturnToTop from "../components/ReturnToTop";
 
 const Home = () => {
@@ -20,23 +19,9 @@ const Home = () => {
   //useStates
   const [searchId, setSearchId] = useState("");
   const [userId, setUserId] = useState("");
-  // const [visible, setVisible] = useState(false);
 
-  // //click events
-  // const toggleVisible = () => {
-  //   const scrolled = document.documentElement.scrollTop;
-  //  (scrolled > 300) ? setVisible(true) : setVisible(false);
-  // }
-
-  // const scrollToTop = () => {
-  //   window.scrollTo({
-  //     top:0,
-  //     behavior: 'smooth'
-  //   });
-  // };
-
-  // window.addEventListener('scroll', toggleVisible);
-
+  //Events
+  //submit post
   const addPostHandler = (e) => {
     e.preventDefault();
     {
@@ -73,44 +58,51 @@ const Home = () => {
               <div className="column">
                 <label htmlFor="postSearch">Search by User</label>
                 <input
-                  type="number"
+                  type="text"
                   name="user"
                   id="text"
                   value={userId}
                   placeholder="User:"
                   onChange={(e) => setUserId(e.target.value)}
+                  disabled={searchId}
                 />
               </div>
+
               <div className="column">
                 <label htmlFor="postSearch">Search by ID</label>
                 <input
-                  type="number"
+                  type="text"
                   name="searchId"
                   id="text"
                   value={searchId}
                   placeholder="ID:"
                   onChange={(e) => setSearchId(e.target.value)}
+                  disabled={userId}
                 />
               </div>
             </div>
           </section>
 
           {togglePostForm && <PostForm />}
-          {/* {toggleEditForm && <EditPostForm />} */}
 
           <section className="content">
             {posts.length > 0 ? (
               <div className="posts">
-                {/* after removing the extra outside array, change this to posts.map */}
+                {/* This feels busy. Come back to refactor */}
                 {posts
                   .filter((post) => {
-                    if (searchId === "" && userId === "") {
-                      return post;
-                    } else if (post.id === Number(searchId)) {
+                    if (!searchId && !userId) {
                       return post;
                     } else if (post.userId === Number(userId)) {
                       return post;
+                    } else if (post.id === Number(searchId)) {
+                      return post;
                     }
+                  })
+                  .sort((a, b) => {
+                    if (a.id > b.id) return 1;
+                    if (a.id < b.id) return -1;
+                    return 0;
                   })
                   .map((post) => (
                     <PostItem key={post.id} post={post} />

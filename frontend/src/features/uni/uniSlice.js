@@ -62,13 +62,12 @@ export const uniSlice = createSlice({
           if (na > nb) return 1;
           return 0;
         });
-        console.log("getUnis action", action.payload);
         state.unis = sorted;
       })
       .addCase(getUnis.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        console.log("getUnis error", action.payload);
+
         state.message = action.payload;
       })
       .addCase(getCountries.pending, (state) => {
@@ -84,13 +83,13 @@ export const uniSlice = createSlice({
           if (na > nb) return 1;
           return 0;
         });
-        console.log("getCountries action", action.payload);
+
         state.countries = sorted;
       })
       .addCase(getCountries.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        console.log("getCountries error", action.payload);
+
         state.message = action.payload;
       });
   },
