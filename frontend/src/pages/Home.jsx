@@ -92,7 +92,9 @@ const Home = () => {
                     //   }
                     // })
                     .map((user) => (
-                      <div key={user}>{user}</div>
+                      <a key={user} className="data-item">
+                        <p>{user}</p>
+                      </a>
                     ))}
                 </div>
               </div>

@@ -202,6 +202,29 @@ p {
         select {
           font-size: 0.8rem;
         }
+        .data-result {
+          margin-top: 5px;
+          cursor: pointer;
+          height: 12rem;
+          width: 100%;
+          background-color: $white;
+          overflow: hidden;
+          overflow-y: auto;
+
+          .data-item {
+            width: 100%;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            color: $black;
+            &:hover {
+              background-color: $grey;
+            }
+            p {
+              margin-left: 1rem;
+            }
+          }
+        }
       }
     }
     .postal {
