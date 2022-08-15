@@ -28,6 +28,16 @@ const Home = () => {
     }
   };
 
+  // const searchValue = () => {
+  //   if (searchId && userId) {
+  //     return searchId && userId;
+  //   } else if (searchId) {
+  //     return searchId;
+  //   } else if (userId) {
+  //     return userId;
+  //   }
+  // };
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -63,6 +73,7 @@ const Home = () => {
                   value={userId}
                   placeholder="User:"
                   onChange={(e) => setUserId(e.target.value)}
+                  disabled={searchId}
                 />
               </div>
               <div className="column">
@@ -74,6 +85,7 @@ const Home = () => {
                   value={searchId}
                   placeholder="ID:"
                   onChange={(e) => setSearchId(e.target.value)}
+                  disabled={userId}
                 />
               </div>
             </div>
@@ -84,14 +96,13 @@ const Home = () => {
           <section className="content">
             {posts.length > 0 ? (
               <div className="posts">
-                {/* after removing the extra outside array, change this to posts.map */}
                 {posts
                   .filter((post) => {
-                    if (searchId === "" && userId === "") {
-                      return post;
-                    } else if (post.id === Number(searchId)) {
+                    if (!searchId && !userId) {
                       return post;
                     } else if (post.userId === Number(userId)) {
+                      return post;
+                    } else if (post.id === Number(searchId)) {
                       return post;
                     }
                   })
