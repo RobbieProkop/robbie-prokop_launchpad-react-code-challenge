@@ -20,7 +20,11 @@ const ReturnToTop = (y) => {
   window.addEventListener("scroll", toggleVisible);
 
   return (
-    <a href="#" onClick={scrollToTop} className="return-to-top">
+    <a
+      href="#"
+      onClick={scrollToTop}
+      className={visible ? "return-to-top" : "hide"}
+    >
       <button className="btn btn-edit">
         <FaAngleDoubleUp />
       </button>
