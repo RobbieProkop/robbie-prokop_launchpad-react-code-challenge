@@ -60,7 +60,6 @@ export const editPost = createAsyncThunk(
     const { id } = postData;
     try {
       const res = await postService.editPost(id, postData);
-      console.log("edit is working", res);
       return res;
     } catch (error) {
       const message =
@@ -133,7 +132,6 @@ export const postSlice = createSlice({
       .addCase(editPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        console.log("updated action.payload title", action.payload.title);
         if (!action.payload?.id) {
           console.log("action payload", action.payload);
           return console.log("could not update post");
