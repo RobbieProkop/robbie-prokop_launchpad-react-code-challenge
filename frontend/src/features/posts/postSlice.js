@@ -43,6 +43,7 @@ export const getOnePost = createAsyncThunk(
 export const createPost = createAsyncThunk(
   "posts/create",
   async (postData, thunkAPI) => {
+    console.log("expected 1", postData);
     try {
       return await postService.createPost(postData);
     } catch (error) {
@@ -119,6 +120,7 @@ export const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
+        console.log("looking for id", action.payload.id);
         state.posts.push(action.payload);
       })
       .addCase(createPost.rejected, (state, action) => {

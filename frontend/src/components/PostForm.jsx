@@ -4,8 +4,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setToggleForm, createPost } from "../features/posts/postSlice";
 
-// toast.configure();
-
 const PostForm = () => {
   const [userId, setUserId] = useState("");
   const [title, setTitle] = useState("");
@@ -20,11 +18,14 @@ const PostForm = () => {
     (el) => el.toString().length >= 1
   );
 
+  let id = 101;
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (canSave) {
       try {
         dispatch(createPost({ body, title, userId }));
+        toast.success("Post added Successfully");
         setUserId("");
         setTitle("");
         setBody("");
@@ -37,10 +38,9 @@ const PostForm = () => {
       }
     } else {
       console.log("Please fill in all fields!");
-      toast.error("please fill in all fields", {
+      toast.error("Please Fill In All Fields", {
         position: toast.POSITION.TOP_LEFT,
       });
-      <ToastContainer />;
     }
   };
 
@@ -80,6 +80,7 @@ const PostForm = () => {
           <button className="btn btn-block" type="submit">
             Submit Post
           </button>
+          <ToastContainer />
         </div>
       </form>
     </section>

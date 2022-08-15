@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import PostItem from "../components/PostItem";
 import ErrorPage from "./ErrorPage";
 import {
@@ -16,7 +16,6 @@ const EditPostForm = () => {
   const navigate = useNavigate();
   const { postId } = useParams();
 
-  const { isLoading, isError, message } = useSelector((state) => state.posts);
   const post = useSelector((state) => selectPostById(state, Number(postId)));
 
   const [title, setTitle] = useState(post ? post.title : "");
@@ -35,6 +34,7 @@ const EditPostForm = () => {
         dispatch(
           editPost({ id: post.id, title, body, userId: post.userId })
         ).unwrap();
+        toast.success("Post edited Successfully");
         setTitle("");
         setBody("");
         navigate("/");
@@ -44,16 +44,13 @@ const EditPostForm = () => {
         toast.error(message);
         console.log(message);
       }
+    } else {
+      console.log("Please fill in all fields!");
+      toast.error("Please Fill In All Fields", {
+        position: toast.POSITION.TOP_LEFT,
+      });
     }
   };
-
-  // useEffect(() => {
-  //   if (isError) {
-  //     toast.error(message);
-  //     console.log(message);
-  //   }
-  //   dispatch(getOnePost(postId));
-  // }, [dispatch]);
 
   return (
     <div className="container">
@@ -94,6 +91,7 @@ const EditPostForm = () => {
             <button className="btn btn-block" type="submit">
               Submit Edit
             </button>
+            <ToastContainer />
             <button
               //This would work if I had access to the backend. Need the deletePost to return the post.id in order to filter it out.
               onClick={() => dispatch(deletePost(post.id))}

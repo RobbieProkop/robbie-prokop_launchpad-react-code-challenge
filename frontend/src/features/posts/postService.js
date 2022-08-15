@@ -16,7 +16,9 @@ const getOnePost = async (postId) => {
 
 //Create new post
 const createPost = async (postData) => {
+  console.log("expected 2", postData);
   const { data } = await axios.post(API_URL, postData);
+  console.log("createPost", data.id);
   return data;
 };
 
