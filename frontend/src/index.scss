@@ -6,7 +6,7 @@ $btn-edit: green;
 $btn-delete: red;
 $black: #333;
 $white: #fff;
-$grey: rgb(122, 122, 122);
+$grey: rgb(175, 175, 175);
 $hover: rgb(123, 195, 123);
 
 // reset
@@ -68,7 +68,7 @@ h3 {
 }
 
 h4 {
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding-bottom: 5px;
   font-weight: 300;
 }
@@ -92,7 +92,6 @@ p {
     background: $black;
     border: 1px solid $black;
     color: $white;
-    // transform: scale(1.1);
     transform: translate(0.2rem, -0.2rem);
   }
 }
@@ -135,8 +134,13 @@ p {
   align-items: center;
 }
 
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
 //navbar
-.header {
+#header {
   background-color: $primaryColor;
   height: 70px;
   padding: 2rem;
@@ -146,6 +150,10 @@ p {
     max-width: 1200px;
     margin: 0 auto;
     height: 100%;
+
+    .logo {
+      font-size: 1.3rem;
+    }
   }
 
   .header-link {
@@ -154,7 +162,7 @@ p {
       padding: 10px;
 
       &:hover {
-        color: $hover;
+        color: $grey;
       }
       svg {
         margin-right: 5px;
@@ -380,7 +388,7 @@ p {
         height: 250px;
       }
 
-      // ideally bg1 and bg2 would not alternate every 2. Need to think of a better way to add the class (currently beign mapped in unitItem
+      // ideally bg1 and bg2 would not alternate every 3. Need to think of a better way to add the class (currently beign mapped in unitItem
 
       &.bg1 {
         background: url("../public/coffee-writing.jpeg");
@@ -415,10 +423,27 @@ p {
   }
 }
 
+.return-to-top {
+  @include flex-end();
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  bottom: 75px;
+  right: 10px;
+  button {
+    border-radius: 50%;
+    padding: 1rem 1.2rem;
+
+    &:hover {
+      padding: 1.1rem 1.4rem;
+    }
+  }
+}
+
 //footer
 .footer {
   @include flex-center();
-  background: $primaryColor;
+  background: $grey;
   color: $black;
   height: 70px;
   margin-top: 2rem;
