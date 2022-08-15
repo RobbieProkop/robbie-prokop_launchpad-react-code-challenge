@@ -1,3 +1,12 @@
+@media (max-width: 1300px) {
+  .container {
+    .uni-content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
 @media (max-width: 820px) {
   #header {
     .width-container {

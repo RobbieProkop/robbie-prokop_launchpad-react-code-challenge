@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 @import "variables";
-@import "mobile";
 
 // reset
 * {
@@ -181,7 +180,7 @@ p {
   max-width: 1200px;
   @include flex-center();
   flex-direction: column;
-  margin: 0 auto !important;
+  margin: 0 auto;
   .heading {
     @include flex-center();
     flex-direction: column;
@@ -456,3 +455,5 @@ p {
   height: 70px;
   margin-top: 2rem;
 }
+
+@import "mobile";
