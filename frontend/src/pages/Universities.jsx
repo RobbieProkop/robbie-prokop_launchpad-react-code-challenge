@@ -22,38 +22,6 @@ const Universities = () => {
 
   let id = 0;
 
-  // //for scroll to top button
-
-  // const scrollButton = document.getElementById("scroll");
-
-  // //adds class if scrolled
-  // const toggleScroll = () => {
-  //   let y = window.scrollY;
-
-  //   if (y > 0) {
-  //     scrollButton.className = "return-to-top show";
-  //   } else {
-  //     scrollButton.className = "return-to-top hide";
-  //   }
-  // };
-  // window.addEventListener("scroll", toggleScroll);
-
-  // // scroll back to top function
-  // const scrollToTop = () => {
-  //   const top = document.documentElement.scrollTop || document.body.scrollTop;
-
-  //   if (top > 0) {
-  //     window.requestAnimationFrame(scrollToTop);
-  //     window.scrollTo(0, top - top / 10);
-  //   }
-  // };
-
-  // //onClick event
-  // const scroll = (e) => {
-  //   e.preventDefault();
-  //   scrollToTop();
-  // };
-
   const onChange = (e) => {
     setCountry(e.target.value);
   };
@@ -129,13 +97,6 @@ const Universities = () => {
             )}
           </section>
           <ReturnToTop />
-          {/* <div id="scroll">
-            <a href="#">
-              <button className="btn btn-edit" onClick={scroll}>
-                <FaAngleDoubleUp />
-              </button>
-            </a>
-          </div> */}
         </div>
       )}
     </>
