@@ -146,16 +146,23 @@ p {
     margin: 0 auto;
     height: 100%;
 
-    .logo {
-      font-size: 1.3rem;
-
-      .toggle {
-        display: none;
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      width: 100%;
+      .logo {
+        font-size: 1.3rem;
+        .toggle {
+          display: none;
+        }
       }
     }
-    .menu {
-      display: none;
-    }
+  }
+
+  .menu {
+    display: none;
   }
 
   .header-link {
