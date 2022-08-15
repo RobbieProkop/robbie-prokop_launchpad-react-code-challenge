@@ -20,22 +20,6 @@ const Home = () => {
   //useStates
   const [searchId, setSearchId] = useState("");
   const [userId, setUserId] = useState("");
-  // const [visible, setVisible] = useState(false);
-
-  // //click events
-  // const toggleVisible = () => {
-  //   const scrolled = document.documentElement.scrollTop;
-  //  (scrolled > 300) ? setVisible(true) : setVisible(false);
-  // }
-
-  // const scrollToTop = () => {
-  //   window.scrollTo({
-  //     top:0,
-  //     behavior: 'smooth'
-  //   });
-  // };
-
-  // window.addEventListener('scroll', toggleVisible);
 
   const addPostHandler = (e) => {
     e.preventDefault();
@@ -96,7 +80,6 @@ const Home = () => {
           </section>
 
           {togglePostForm && <PostForm />}
-          {/* {toggleEditForm && <EditPostForm />} */}
 
           <section className="content">
             {posts.length > 0 ? (
