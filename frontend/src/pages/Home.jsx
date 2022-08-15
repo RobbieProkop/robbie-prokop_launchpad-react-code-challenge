@@ -5,7 +5,6 @@ import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { getPosts, setToggleForm } from "../features/posts/postSlice";
-import { FaSearchLocation } from "react-icons/fa";
 import ReturnToTop from "../components/ReturnToTop";
 
 const Home = () => {

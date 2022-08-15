@@ -20,18 +20,11 @@ const ReturnToTop = (y) => {
   window.addEventListener("scroll", toggleVisible);
 
   return (
-    <div
-      id="scroll"
-      className="return-to-top"
-      onClick={scrollToTop}
-      style={{ display: visible ? "flex" : "none" }}
-    >
-      <a href="#">
-        <button className="btn btn-edit">
-          <FaAngleDoubleUp />
-        </button>
-      </a>
-    </div>
+    <a href="#" onClick={scrollToTop} className="return-to-top">
+      <button className="btn btn-edit">
+        <FaAngleDoubleUp />
+      </button>
+    </a>
   );
 };
 export default ReturnToTop;

@@ -4,6 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setToggleForm, createPost } from "../features/posts/postSlice";
 
+// toast.configure();
+
 const PostForm = () => {
   const [userId, setUserId] = useState("");
   const [title, setTitle] = useState("");
