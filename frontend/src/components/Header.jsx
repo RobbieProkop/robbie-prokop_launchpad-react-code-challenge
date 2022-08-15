@@ -3,7 +3,7 @@ import { FaUniversity, FaSearchLocation, FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(true);
   return (
     <>
       <header id="header">
@@ -36,7 +36,7 @@ const Header = () => {
               </li>
             </ul>
           </nav>
-          <nav className="menu">
+          <nav className={toggleMenu ? "menu active" : "menu"}>
             <ul>
               <li>
                 <Link to="/">

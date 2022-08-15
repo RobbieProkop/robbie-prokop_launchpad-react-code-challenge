@@ -31,26 +31,29 @@
         }
       }
       .menu {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 100vw;
-        height: 50vh;
-        z-index: 1001;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: $primaryColor;
-        ul {
-          position: relative;
-          list-style: none;
-          li {
-            cursor: pointer;
-            padding: 10px 0;
-            a {
-              font-size: 2rem;
-              &:hover {
-                border-bottom: none;
+        display: none;
+        &.active {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 100vw;
+          height: 50vh;
+          z-index: 1001;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: $primaryColor;
+          ul {
+            position: relative;
+            list-style: none;
+            li {
+              cursor: pointer;
+              padding: 10px 0;
+              a {
+                font-size: 2rem;
+                &:hover {
+                  border-bottom: none;
+                }
               }
             }
           }
