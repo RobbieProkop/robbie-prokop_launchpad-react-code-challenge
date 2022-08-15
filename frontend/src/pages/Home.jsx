@@ -20,12 +20,24 @@ const Home = () => {
   //useStates
   const [searchId, setSearchId] = useState("");
   const [userId, setUserId] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
+  //events
   const addPostHandler = (e) => {
     e.preventDefault();
     {
       !togglePostForm && dispatch(setToggleForm());
     }
+  };
+  const filterHandler = (e, data) => {
+    const searchWord = e.target.value;
+    (data = "userId") ? setUserId(searchWord) : setSearchId(searchWord);
+    const newFilter = posts.filter((post) => {
+      data = "userId"
+        ? post.userId === Number(searchWord)
+        : post.id === Number(searchWord);
+    });
+    setFilteredData(newFilter);
   };
 
   useEffect(() => {
@@ -81,22 +93,19 @@ const Home = () => {
                   id="text"
                   value={userId}
                   placeholder="User:"
-                  onChange={(e) => setUserId(e.target.value)}
+                  onChange={(e) => filterHandler(e, "userId")}
                   disabled={searchId}
                 />
-                <div className="data-result">
-                  {users
-                    // .filter((post) => {
-                    //   if (post.userId === Number(userId)) {
-                    //     return post;
-                    //   }
-                    // })
-                    .map((user) => (
+                {filteredData.length != 0 && (
+                  // { userId.length != 0 && (
+                  <div className="data-result">
+                    {filteredData.map((user) => (
                       <a key={user} className="data-item">
                         <p>{user}</p>
                       </a>
                     ))}
-                </div>
+                  </div>
+                )}
               </div>
 
               <div className="column">
@@ -107,20 +116,24 @@ const Home = () => {
                   id="text"
                   value={searchId}
                   placeholder="ID:"
-                  onChange={(e) => setSearchId(e.target.value)}
+                  onChange={(e) => filterHandler(e, "searchId")}
                   disabled={userId}
                 />
-                <div className="data-result">
-                  {ids
-                    // .filter((post) => {
-                    //   if (post.userId === Number(userId)) {
-                    //     return post;
-                    //   }
-                    // })
-                    .map((id) => (
-                      <div key={id}>{id}</div>
-                    ))}
-                </div>
+                {filteredData.length != 0 && (
+                  <div className="data-result">
+                    {filteredData
+                      // .filter((post) => {
+                      //   if (post.userId === Number(userId)) {
+                      //     return post;
+                      //   }
+                      // })
+                      .map((id) => (
+                        <a key={id} className="data-item">
+                          <p>{id}</p>
+                        </a>
+                      ))}
+                  </div>
+                )}
               </div>
             </div>
           </section>
