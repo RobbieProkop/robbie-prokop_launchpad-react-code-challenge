@@ -187,6 +187,7 @@ p {
   .heading {
     @include flex-center();
     flex-direction: column;
+    margin-top: 70px;
     width: 80%;
     padding: 10px;
     .search {
@@ -453,9 +454,12 @@ p {
 .footer {
   @include flex-center();
   background: $grey;
+  position: fixed;
+  width: 100%;
   color: $black;
   height: 70px;
   margin-top: 2rem;
+  bottom: 0;
 }
 
 @import "mobile";
