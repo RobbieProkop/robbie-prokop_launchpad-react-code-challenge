@@ -70,4 +70,18 @@
       }
     }
   }
+  .container {
+    .heading {
+      .search {
+        display: flex;
+        flex-direction: column;
+        .column {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    .uni-content {
+      margin-top: 1rem;
+    }
+  }
 }
