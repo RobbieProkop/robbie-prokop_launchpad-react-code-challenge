@@ -6,17 +6,36 @@ import Spinner from "../components/Spinner";
 import { toast, ToastContainer } from "react-toastify";
 import { getPosts, setToggleForm } from "../features/posts/postSlice";
 import { FaAngleDoubleUp } from "react-icons/fa";
+import ReturnToTop from "../components/ReturnToTop";
 
 const Home = () => {
   const dispatch = useDispatch();
 
+  //useSelectors
   const togglePostForm = useSelector((state) => state.posts.postForm);
   const { posts, isLoading, isError, message } = useSelector(
     (state) => state.posts
   );
 
+  //useStates
   const [searchId, setSearchId] = useState("");
   const [userId, setUserId] = useState("");
+  // const [visible, setVisible] = useState(false);
+
+  // //click events
+  // const toggleVisible = () => {
+  //   const scrolled = document.documentElement.scrollTop;
+  //  (scrolled > 300) ? setVisible(true) : setVisible(false);
+  // }
+
+  // const scrollToTop = () => {
+  //   window.scrollTo({
+  //     top:0,
+  //     behavior: 'smooth'
+  //   });
+  // };
+
+  // window.addEventListener('scroll', toggleVisible);
 
   const addPostHandler = (e) => {
     e.preventDefault();
@@ -96,18 +115,12 @@ const Home = () => {
                   .map((post) => (
                     <PostItem key={post.id} post={post} />
                   ))}
-                <div className="return-to-top">
-                  <a href="#header">
-                    <button>
-                      <FaAngleDoubleUp />
-                    </button>
-                  </a>
-                </div>
               </div>
             ) : (
               <h3>No posts to show</h3>
             )}
           </section>
+          <ReturnToTop />
         </div>
       )}
     </>

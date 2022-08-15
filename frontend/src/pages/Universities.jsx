@@ -22,35 +22,37 @@ const Universities = () => {
 
   let id = 0;
 
-  //for scroll to top button
+  // //for scroll to top button
 
-  const scrollButton = document.getElementById("scroll");
+  // const scrollButton = document.getElementById("scroll");
 
-  const scrollFunc = () => {
-    let y = window.scrollY;
+  // //adds class if scrolled
+  // const toggleScroll = () => {
+  //   let y = window.scrollY;
 
-    if (y > 0) {
-      scrollButton.className = "return-to-top show";
-    } else {
-      scrollButton.className = "return-to-top hide";
-    }
-  };
+  //   if (y > 0) {
+  //     scrollButton.className = "return-to-top show";
+  //   } else {
+  //     scrollButton.className = "return-to-top hide";
+  //   }
+  // };
+  // window.addEventListener("scroll", toggleScroll);
 
-  window.addEventListener("scroll", scrollFunc);
+  // // scroll back to top function
+  // const scrollToTop = () => {
+  //   const top = document.documentElement.scrollTop || document.body.scrollTop;
 
-  const scrollToTop = () => {
-    const top = document.documentElement.scrollTop || document.body.scrollTop;
+  //   if (top > 0) {
+  //     window.requestAnimationFrame(scrollToTop);
+  //     window.scrollTo(0, top - top / 10);
+  //   }
+  // };
 
-    if (top > 0) {
-      window.requestAnimationFrame(scrollToTop);
-      window.scrollTo(0, top - top / 20);
-    }
-  };
-
-  const scroll = (e) => {
-    e.preventDefault;
-    scrollToTop();
-  };
+  // //onClick event
+  // const scroll = (e) => {
+  //   e.preventDefault();
+  //   scrollToTop();
+  // };
 
   const onChange = (e) => {
     setCountry(e.target.value);
@@ -126,15 +128,14 @@ const Universities = () => {
               <h3>No Universities to show</h3>
             )}
           </section>
-          {/* <ReturnToTop y={y} /> */}
-          <div id="scroll">
-            {/* <div className="return-to-to "> */}
+          <ReturnToTop />
+          {/* <div id="scroll">
             <a href="#">
               <button className="btn btn-edit" onClick={scroll}>
                 <FaAngleDoubleUp />
               </button>
             </a>
-          </div>
+          </div> */}
         </div>
       )}
     </>

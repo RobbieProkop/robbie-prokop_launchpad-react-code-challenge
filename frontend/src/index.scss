@@ -134,6 +134,11 @@ p {
   align-items: center;
 }
 
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
 //navbar
 #header {
   background-color: $primaryColor;
@@ -419,22 +424,12 @@ p {
 }
 
 .return-to-top {
-  display: flex;
-  justify-content: flex-end;
+  @include flex-end();
   width: 100%;
   z-index: 100;
   position: fixed;
   bottom: 75px;
   right: 10px;
-
-  &.show {
-    visibility: visible;
-    opacity: 1;
-  }
-  &.hide {
-    visibility: hidden;
-    opacity: 0;
-  }
   button {
     border-radius: 50%;
     padding: 1rem 1.2rem;
