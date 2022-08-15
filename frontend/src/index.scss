@@ -1,13 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
-$primaryColor: lightgoldenrodyellow;
-$btn: rgb(212, 194, 35);
-$btn-edit: green;
-$btn-delete: red;
-$black: #333;
-$white: #fff;
-$grey: rgb(175, 175, 175);
-$hover: rgb(123, 195, 123);
+@import "variables";
+@import "mobile";
 
 // reset
 * {
@@ -154,6 +148,13 @@ p {
 
     .logo {
       font-size: 1.3rem;
+
+      .toggle {
+        display: none;
+      }
+    }
+    .menu {
+      display: none;
     }
   }
 
