@@ -28,16 +28,6 @@ const Home = () => {
     }
   };
 
-  // const searchValue = () => {
-  //   if (searchId && userId) {
-  //     return searchId && userId;
-  //   } else if (searchId) {
-  //     return searchId;
-  //   } else if (userId) {
-  //     return userId;
-  //   }
-  // };
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
