@@ -1,6 +1,13 @@
 @media (max-width: 820px) {
   #header {
     .width-container {
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+        width: 100%;
+      }
       .hidden {
         display: none;
       }
