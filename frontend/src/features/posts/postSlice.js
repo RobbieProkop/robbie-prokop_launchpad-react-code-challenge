@@ -45,6 +45,7 @@ export const createPost = createAsyncThunk(
   async (postData, thunkAPI) => {
     console.log("expected 1", postData);
     try {
+      console.log("expected 4", await postService.createPost(postData));
       return await postService.createPost(postData);
     } catch (error) {
       const message =
@@ -120,8 +121,19 @@ export const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccessful = true;
-        console.log("looking for id", action.payload.id);
-        state.posts.push(action.payload);
+        //This is a temporary fix for the API data. If real data was returned, a unique id would be returned, and only state.posts.push(action.payload) would work
+        if (!state.posts.find((post) => post.id === action.payload.id)) {
+          state.posts.push(action.payload);
+        } else {
+          const sorted = state.posts.sort((a, b) => {
+            if (a.id > b.id) return 1;
+            if (a.id < b.id) return -1;
+            return 0;
+          });
+          action.payload.id = sorted[sorted.length - 1].id + 1;
+          console.log("updated payload id", action.payload);
+          state.posts.push(action.payload);
+        }
       })
       .addCase(createPost.rejected, (state, action) => {
         state.isLoading = false;
@@ -140,7 +152,7 @@ export const postSlice = createSlice({
         }
         const { id } = action.payload;
         const posts = state.posts.filter((post) => post.id !== id);
-        state.posts.push(action.payload);
+        state.posts = [...posts, action.payload];
       })
       .addCase(editPost.rejected, (state, action) => {
         state.isLoading = false;

@@ -88,6 +88,7 @@ const Home = () => {
           <section className="content">
             {posts.length > 0 ? (
               <div className="posts">
+                {/* This feels busy. Come back to refactor */}
                 {posts
                   .filter((post) => {
                     if (!searchId && !userId) {
@@ -97,6 +98,11 @@ const Home = () => {
                     } else if (post.id === Number(searchId)) {
                       return post;
                     }
+                  })
+                  .sort((a, b) => {
+                    if (a.id > b.id) return 1;
+                    if (a.id < b.id) return -1;
+                    return 0;
                   })
                   .map((post) => (
                     <PostItem key={post.id} post={post} />
