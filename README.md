@@ -4,10 +4,21 @@ This projects is a simple, single-page react app created for LaunchPad. This pro
 
 This repository is built using React, SCSS, Axios, Redux, React-Dom, React-Router-Dom, and React-Toastify. I tried to make the code fairly modularized and use current industry "best practices". A big stretch goal of mine, which I have not been able to start yet, is to get 80% + test coverage. I hope you enjoy reviewing this project!
 
-<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/readme/frontend/public/1.home.png" />
-<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/readme/frontend/public/2.form.png" />
-<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/readme/frontend/public/3.uni.png" />
-<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/readme/frontend/public/4.PostalLookup.png" />
+## Home Page
+
+<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/1.home.png" />
+
+## Add Post Form
+
+<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/2.form.png" />
+
+## Universities Page
+
+<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/3.uni.png" />
+
+## Postal Lookup Page
+
+<img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/4.PostalLookup.png" />
 
 ## Setup
 
