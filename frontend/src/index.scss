@@ -81,7 +81,7 @@ p {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease-in;
-  z-index: 1000;
+  z-index: 10;
   &:hover {
     background: $black;
     border: 1px solid $black;
@@ -138,7 +138,10 @@ p {
   background-color: $primaryColor;
   height: 70px;
   padding: 2rem;
-
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
   .width-container {
     @include flex-between();
     max-width: 1200px;
