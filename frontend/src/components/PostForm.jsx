@@ -54,7 +54,7 @@ const PostForm = () => {
           <input
             type="text"
             name="text"
-            id="text"
+            id="userId"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
           />
@@ -62,7 +62,7 @@ const PostForm = () => {
           <input
             type="text"
             name="text"
-            id="text"
+            id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -77,7 +77,7 @@ const PostForm = () => {
           />
         </div>
         <div className="form-group">
-          <button className="btn btn-block" type="submit">
+          <button className="btn btn-block" type="submit" id="form-submit">
             Submit Post
           </button>
           <ToastContainer />
