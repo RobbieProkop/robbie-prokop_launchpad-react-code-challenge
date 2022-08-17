@@ -50,20 +50,30 @@ describe("Home Page", () => {
     //     cy.get("#search-user").type("{backspace}");
     //   });
     // });
-    describe("search postId", () => {
+    // describe("search postId", () => {
+    //   beforeEach(() => {
+    //     cy.get("#search-postId").click().type("2");
+    //   });
+    //   it("should find search user input", () => {
+    //     cy.get("#search-postId").click().type("2");
+    //   });
+    //   it("should find posts by user: 2", () => {
+    //     cy.contains("User: 1");
+    //   });
+    //   it("should have only 1 post match post id", () => {
+    //     cy.get(".posts").children().should("have.length", 1);
+    //   });
+    // });
+    describe("return to top btn", () => {
       beforeEach(() => {
-        cy.get("#search-postId").click().type("2");
+        cy.scrollTo(0, 100000);
       });
-      it("should find search user input", () => {
-        cy.get("#search-postId").click().type("2");
+      it("should click return to top btn", () => {
+        cy.get(".return-to-top").click();
       });
-      it("should find posts by user: 2", () => {
-        cy.contains("User: 1");
-        expect(".posts").length;
+      it("should see search bars", () => {
+        cy.get("#search-user").should("be.visible");
       });
-      //  it("should ", () => {
-      //   cy.
-      //  });
     });
   });
 });
