@@ -75,11 +75,11 @@ describe("Home Page", () => {
     //     cy.get("#search-user").should("be.visible");
     //   });
     // });
-    describe("return to top btn", () => {
-      beforeEach(() => {
-        cy.get(":nth-child(1) > :nth-child(1) > div > .btn-edit").click();
-      });
+    describe("edit and delete", () => {
       describe("edit btn", () => {
+        beforeEach(() => {
+          cy.get(":nth-child(1) > :nth-child(1) > div > .btn-edit").click();
+        });
         it("should have info about post 1", () => {
           cy.get(".heading").contains("Post 1");
         });
@@ -94,9 +94,17 @@ describe("Home Page", () => {
             .get(":nth-child(1) > h3")
             .contains("New Title");
         });
+        it("should click delte btn from edit page", () => {
+          cy.get(".btn-delete").click();
+        });
       });
-      it("should delete post", () => {
-        cy.get(":nth-child(1) > :nth-child(1) > div > .btn-delete");
+      describe("delete btn", () => {
+        beforeEach(() => {
+          cy.get(":nth-child(1) > :nth-child(1) > div > .btn-delete").click();
+        });
+        it("should not find post 1", () => {
+          cy.contains("ID: 1").should("not.exist");
+        });
       });
     });
   });
