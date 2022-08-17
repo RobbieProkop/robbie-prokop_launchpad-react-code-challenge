@@ -64,15 +64,39 @@ describe("Home Page", () => {
     //     cy.get(".posts").children().should("have.length", 1);
     //   });
     // });
+    // describe("return to top btn", () => {
+    //   beforeEach(() => {
+    //     cy.scrollTo(0, 100000);
+    //   });
+    //   it("should click return to top btn", () => {
+    //     cy.get(".return-to-top").click();
+    //   });
+    //   it("should see search bars", () => {
+    //     cy.get("#search-user").should("be.visible");
+    //   });
+    // });
     describe("return to top btn", () => {
       beforeEach(() => {
-        cy.scrollTo(0, 100000);
+        cy.get(":nth-child(1) > :nth-child(1) > div > .btn-edit").click();
       });
-      it("should click return to top btn", () => {
-        cy.get(".return-to-top").click();
+      describe("edit btn", () => {
+        it("should have info about post 1", () => {
+          cy.get(".heading").contains("Post 1");
+        });
+        it("should submit title change and find new title", () => {
+          cy.get("#title-form")
+            .click()
+            .type(
+              "{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace} New Title"
+            )
+            .get('[type="submit"')
+            .click()
+            .get(":nth-child(1) > h3")
+            .contains("New Title");
+        });
       });
-      it("should see search bars", () => {
-        cy.get("#search-user").should("be.visible");
+      it("should delete post", () => {
+        cy.get(":nth-child(1) > :nth-child(1) > div > .btn-delete");
       });
     });
   });
