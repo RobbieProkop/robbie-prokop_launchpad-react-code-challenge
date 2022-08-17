@@ -24,8 +24,8 @@ const PostForm = () => {
     e.preventDefault();
     if (canSave) {
       try {
-        dispatch(createPost({ body, title, userId }));
         toast.success("Post added Successfully");
+        dispatch(createPost({ body, title, userId }));
         setUserId("");
         setTitle("");
         setBody("");
