@@ -4,6 +4,12 @@ This projects is a simple, single-page react app created for LaunchPad. This pro
 
 This repository is built using React, SCSS, Axios, Redux, React-Dom, React-Router-Dom, and React-Toastify. I tried to make the code fairly modularized and use current industry "best practices". A big stretch goal of mine, which I have not been able to start yet, is to get 80% + test coverage. I hope you enjoy reviewing this project!
 
+## Demo
+
+<video muted>
+  <source src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/demo-gif.gif" type="video/gif">
+</video>
+
 ## Home Page
 
 <img src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/1.home.png" />
