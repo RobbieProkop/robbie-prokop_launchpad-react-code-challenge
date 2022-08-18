@@ -6,9 +6,8 @@ This repository is built using React, SCSS, Axios, Redux, React-Dom, React-Route
 
 ## Demo
 
-<video muted>
-  <source src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/demo-gif.gif" type="video/gif">
-</video>
+<img>
+  <source src="https://github.com/RobbieProkop/robbie-prokop_launchpad-react-code-challenge/blob/master/frontend/public/demo-gif.gif" type="video/gif" />
 
 ## Home Page
 
