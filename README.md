@@ -2,7 +2,7 @@
 
 This projects is a simple, single-page react app created for LaunchPad. This project was created 100% by Robbie Prokop.
 
-This repository is built using React, SCSS, Axios, Redux, React-Dom, React-Router-Dom, and React-Toastify. I tried to make the code fairly modularized and use current industry "best practices". A big stretch goal of mine, which I have not been able to start yet, is to get 80% + test coverage. I hope you enjoy reviewing this project!
+This repository is built using React, SCSS, Axios, Redux, React-Dom, React-Router-Dom, and React-Toastify. I tried to make the code fairly modularized and use current industry "best practices". A big stretch goal of mine is to get 80% + test coverage. I hope you enjoy reviewing this project!
 
 ## Demo
 
