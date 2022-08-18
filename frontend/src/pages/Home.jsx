@@ -60,7 +60,7 @@ const Home = () => {
                 <input
                   type="text"
                   name="user"
-                  id="text"
+                  id="search-user"
                   value={userId}
                   placeholder="User:"
                   onChange={(e) => setUserId(e.target.value)}
@@ -73,7 +73,7 @@ const Home = () => {
                 <input
                   type="text"
                   name="searchId"
-                  id="text"
+                  id="search-postId"
                   value={searchId}
                   placeholder="ID:"
                   onChange={(e) => setSearchId(e.target.value)}
