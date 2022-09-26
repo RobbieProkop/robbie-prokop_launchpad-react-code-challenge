@@ -10,7 +10,7 @@ const Header = () => {
         <div className="width-container">
           <div className="flex">
             <Link to="/" className="logo">
-              Launchpad Code Challenge
+              API Mania
             </Link>
             <div
               className={toggleMenu ? "toggle active" : "toggle"}
