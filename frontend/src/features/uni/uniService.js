@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// const UNI_API_URL = "http://universities.hipolabs.com/search?country=Canada";
-const UNI_API_URL = "http://universities.hipolabs.com/search?country=";
+const UNI_API_URL = "https://universities.hipolabs.com/search?country=";
 
 const COUNTRY_API_URL =
   "https://countriesnow.space/api/v0.1/countries/info?returns=none";
